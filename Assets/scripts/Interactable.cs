@@ -1,12 +1,19 @@
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 using System.Collections;
 
 public class Interactable : MonoBehaviour
 {
+    public enum InteractionType { PromptOnly, Dialogue, Note, GiveItem }
+
+    [Header("Interaction Type")]
+    public InteractionType interactionType = InteractionType.Dialogue;
+
     [Header("UI References")]
     public TextMeshProUGUI promptText;
     public TextMeshProUGUI dialogueText;
+    public GameObject notePanel;
+    public TextMeshProUGUI noteTextUI;
 
     [Header("Prompt Settings")]
     public string promptMessage = "Press E to interact";
@@ -23,12 +30,11 @@ public class Interactable : MonoBehaviour
     public float dialogueDisplayDuration = 3f;
     public bool repeatable = true;
 
-    [Header("Output Settings (Object Removal)")]
+    [Header("Output Settings")]
     public bool removeAfterInteraction = false;
 
-
     [Header("Required Item")]
-    public string requiredItem; // leave blank if no requirement
+    public string requiredItem;
 
     [Header("Gives Item On Interaction")]
     public bool givesItem = false;
@@ -36,14 +42,21 @@ public class Interactable : MonoBehaviour
     [TextArea] public string itemDescription = "Item description goes here.";
     public Sprite itemIcon;
 
+    [Header("Note Interaction")]
+    [TextArea(4, 10)] public string noteText = "This is the note text.";
+    public KeyCode closeNoteKey = KeyCode.E;
+
     private bool playerInRange = false;
     private bool dialogueActive = false;
     private bool dialogueFinished = false;
+    private bool noteOpen = false;
+    private bool promptDismissed = false; // ✅ Tracks if prompt has been dismissed (for PromptOnly)
 
     private void Start()
     {
         if (promptText != null) promptText.alpha = 0;
         if (dialogueText != null) dialogueText.alpha = 0;
+        if (notePanel != null) notePanel.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -51,6 +64,8 @@ public class Interactable : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
+            promptDismissed = false; // ✅ Reset prompt when re-entering
+
             if (promptText != null && (!dialogueFinished || repeatable))
             {
                 promptText.text = promptMessage;
@@ -64,23 +79,32 @@ public class Interactable : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
+            promptDismissed = false; // ✅ Reset prompt for next time
+
             if (promptText != null)
                 StartCoroutine(FadeText(promptText, promptText.alpha, 0, promptFadeOutDuration));
+
+            if (interactionType == InteractionType.Note && noteOpen)
+                CloseNote();
         }
     }
 
     private void Update()
     {
-        if (playerInRange && !dialogueActive && (!dialogueFinished || repeatable))
+        // ✅ Close note first if open
+        if (noteOpen && Input.GetKeyDown(closeNoteKey))
+        {
+            CloseNote();
+            return;
+        }
+
+        // ✅ Handle interaction if in range
+        if (playerInRange && !dialogueActive && (!dialogueFinished || repeatable) && !noteOpen)
         {
             if (requireKeyPress && Input.GetKeyDown(interactKey))
-            {
                 TryInteraction();
-            }
             else if (!requireKeyPress)
-            {
                 TryInteraction();
-            }
         }
     }
 
@@ -89,7 +113,6 @@ public class Interactable : MonoBehaviour
         // Requirement check
         if (!string.IsNullOrEmpty(requiredItem) && !InventoryManager.Instance.HasItem(requiredItem))
         {
-            // Show "missing item" feedback only, no outputs
             if (dialogueText != null)
             {
                 dialogueText.text = missingItemMessage;
@@ -98,25 +121,72 @@ public class Interactable : MonoBehaviour
             return;
         }
 
-        // Give item if configured
-        if (givesItem)
+        switch (interactionType)
         {
-            InventoryManager.Instance.AddItem(itemIcon, itemName, itemDescription);
+            case InteractionType.PromptOnly:
+                HandlePromptOnly();
+                break;
 
-            // Auto-generate pickup dialogue if none was provided
-            if (string.IsNullOrEmpty(dialogueMessage) || dialogueMessage == "Hello, this is the dialogue.")
-            {
-                dialogueMessage = $"You picked up {itemName}!";
-            }
+            case InteractionType.Dialogue:
+                StartCoroutine(Output());
+                break;
+
+            case InteractionType.Note:
+                OpenNote();
+                break;
+
+            case InteractionType.GiveItem:
+                if (givesItem)
+                {
+                    InventoryManager.Instance.AddItem(itemIcon, itemName, itemDescription);
+                    dialogueMessage = $"You picked up {itemName}!";
+                    StartCoroutine(Output());
+                }
+                break;
         }
-
-        // Run full output (dialogue + removal, etc.)
-        StartCoroutine(Output());
     }
 
-    /// <summary>
-    /// Handles dialogue + object removal (the "output" block).
-    /// </summary>
+    // ---------------- PROMPT ONLY ----------------
+    private void HandlePromptOnly()
+    {
+        if (promptDismissed || promptText == null) return; // ✅ Already dismissed
+
+        // Fade out prompt and mark it dismissed
+        StartCoroutine(FadeText(promptText, promptText.alpha, 0, promptFadeOutDuration));
+        promptDismissed = true;
+    }
+
+    // ---------------- NOTE ----------------
+    private void OpenNote()
+    {
+        if (notePanel != null && noteTextUI != null)
+        {
+            notePanel.SetActive(true);
+            noteTextUI.text = noteText;
+            noteOpen = true;
+
+            if (promptText != null)
+                StartCoroutine(FadeText(promptText, promptText.alpha, 0, promptFadeOutDuration));
+        }
+    }
+
+    private void CloseNote()
+    {
+        if (notePanel != null)
+        {
+            notePanel.SetActive(false);
+            noteOpen = false;
+            dialogueFinished = true;
+
+            if (repeatable && playerInRange && promptText != null)
+                StartCoroutine(FadeText(promptText, 0, 1, promptFadeInDuration));
+
+            if (removeAfterInteraction && (!repeatable || !playerInRange))
+                Destroy(gameObject);
+        }
+    }
+
+    // ---------------- DIALOGUE ----------------
     private IEnumerator Output()
     {
         dialogueActive = true;
@@ -127,36 +197,21 @@ public class Interactable : MonoBehaviour
         if (dialogueText != null)
         {
             dialogueText.text = dialogueMessage;
-
-            // Dialogue fade in
             yield return StartCoroutine(FadeText(dialogueText, 0, 1, dialogueFadeInDuration));
-
-            // Display duration
             yield return new WaitForSeconds(dialogueDisplayDuration);
-
-            // Dialogue fade out
             yield return StartCoroutine(FadeText(dialogueText, dialogueText.alpha, 0, dialogueFadeOutDuration));
         }
 
         dialogueActive = false;
         dialogueFinished = true;
 
-        // Show prompt again if repeatable
         if (repeatable && playerInRange && promptText != null)
-        {
             StartCoroutine(FadeText(promptText, 0, 1, promptFadeInDuration));
-        }
 
-        // Handle removal
         if (removeAfterInteraction && (!repeatable || !playerInRange))
-        {
             Destroy(gameObject);
-        }
     }
 
-    /// <summary>
-    /// Shows a quick "missing item" message but does not unlock outputs.
-    /// </summary>
     private IEnumerator TemporaryMessage()
     {
         yield return StartCoroutine(FadeText(dialogueText, 0, 1, 0.5f));
