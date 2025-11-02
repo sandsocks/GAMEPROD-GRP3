@@ -4,23 +4,27 @@ public class CombinationLock : MonoBehaviour
 {
     [Header("Lock Wheels")]
     public Transform[] wheels;
-    [Range(0, 7)] public int[] currentValues = { 7, 7, 7 };  // Default logical = 7
+    [Range(0, 7)] public int[] currentValues = { 7, 7, 7 };
     public int[] correctCombination = { 1, 2, 3 };
-    public float rotationPerStep = 45f; // 360 / 8 = 45° per step
+    public float rotationPerStep = 45f;
 
-    [Header("Interaction Settings")]
+    [Header("Camera Settings")]
     public Camera interactionCamera;
     public Transform cameraFocusPoint;
+    public Transform cameraOriginalPoint;  // 🔹 assign an empty GameObject at the camera’s normal position
     public float cameraMoveSpeed = 5f;
     public float cameraRotateSpeed = 5f;
-    public float interactDistance = 3f;
+
+    [Header("Interaction Settings")]
     public KeyCode interactKey = KeyCode.E;
 
     private bool isInteracting = false;
+    private bool playerInTrigger = false; // 🔹 detects when player is inside the trigger zone
+
     private Transform player;
     private MonoBehaviour playerController;
 
-    private Quaternion[] initialRotations; // stores wheel baselines
+    private Quaternion[] initialRotations;
 
     void Start()
     {
@@ -28,28 +32,22 @@ public class CombinationLock : MonoBehaviour
         playerController = player?.GetComponent<MonoBehaviour>();
 
         initialRotations = new Quaternion[wheels.Length];
-
         for (int i = 0; i < wheels.Length; i++)
         {
             if (wheels[i] == null) continue;
 
-            // Clamp value and save current rotation as baseline for that value
             currentValues[i] = Mathf.Clamp(currentValues[i], 0, 7);
             initialRotations[i] = wheels[i].localRotation *
                                   Quaternion.Inverse(Quaternion.Euler(currentValues[i] * rotationPerStep, 0f, 0f));
         }
-
-        Debug.Log("Lock initialized — baseline synced to visual model.");
     }
 
     void Update()
     {
         if (interactionCamera == null || player == null) return;
 
-        float distance = Vector3.Distance(player.position, transform.position);
-
-        // Press E to start/stop interaction within range
-        if (distance < interactDistance && Input.GetKeyDown(interactKey))
+        // 🔹 Only allow E interaction if player is inside trigger zone
+        if (playerInTrigger && Input.GetKeyDown(interactKey))
         {
             if (!isInteracting) StartInteraction();
             else StopInteraction();
@@ -59,6 +57,10 @@ public class CombinationLock : MonoBehaviour
         {
             MoveCameraToFocus();
             HandleWheelClick();
+        }
+        else
+        {
+            ReturnCameraToOriginal();
         }
     }
 
@@ -97,6 +99,23 @@ public class CombinationLock : MonoBehaviour
         interactionCamera.transform.rotation = Quaternion.Slerp(
             interactionCamera.transform.rotation,
             cameraFocusPoint.rotation,
+            Time.deltaTime * cameraRotateSpeed
+        );
+    }
+
+    void ReturnCameraToOriginal()
+    {
+        if (cameraOriginalPoint == null) return;
+
+        interactionCamera.transform.position = Vector3.Lerp(
+            interactionCamera.transform.position,
+            cameraOriginalPoint.position,
+            Time.deltaTime * cameraMoveSpeed
+        );
+
+        interactionCamera.transform.rotation = Quaternion.Slerp(
+            interactionCamera.transform.rotation,
+            cameraOriginalPoint.rotation,
             Time.deltaTime * cameraRotateSpeed
         );
     }
@@ -147,7 +166,20 @@ public class CombinationLock : MonoBehaviour
         Debug.Log("✅ Correct Combination! Lock opened!");
     }
 
-    // External proxy bridge (for LockRenderClickProxy)
+    // 🔹 Detect player entering trigger zone
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+            playerInTrigger = true;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+            playerInTrigger = false;
+    }
+
+    // 🔹 External proxy bridge (for LockRenderClickProxy)
     public bool GetIsInteracting() => isInteracting;
 
     public void HandleExternalWheelHit(RaycastHit hit)
