@@ -2734,6 +2734,7 @@ GameObject:
   m_Component:
   - component: {fileID: 969900144}
   - component: {fileID: 969900143}
+  - component: {fileID: 969900145}
   m_Layer: 0
   m_Name: UI Manager
   m_TagString: Untagged
@@ -2768,6 +2769,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &969900145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969900142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7a2f0eb194a5564380330f3450d0b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resolutionDropdown: {fileID: 2106906568}
+  BGMSlider: {fileID: 398125802}
+  audioMixer: {fileID: 24100000, guid: 9917b0bcd7eeacb4b911797a44ee69f5, type: 2}
+  Fullscreen: {fileID: 719662843}
 --- !u!1 &992770741
 GameObject:
   m_ObjectHideFlags: 0
