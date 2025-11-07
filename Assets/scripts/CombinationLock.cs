@@ -4,22 +4,22 @@ public class CombinationLock : MonoBehaviour
 {
     [Header("Lock Wheels")]
     public Transform[] wheels;
-    [Range(0, 7)] public int[] currentValues = { 7, 7, 7 };
+    [Range(0, 7)] public int[] currentValues = { 7, 7, 7 }; // Default logical = 7
     public int[] correctCombination = { 1, 2, 3 };
-    public float rotationPerStep = 45f;
-
-    [Header("Camera Settings")]
-    public Camera interactionCamera;
-    public Transform cameraFocusPoint;
-    public Transform cameraOriginalPoint;  // 🔹 assign an empty GameObject at the camera’s normal position
-    public float cameraMoveSpeed = 5f;
-    public float cameraRotateSpeed = 5f;
+    public float rotationPerStep = 45f; // 360 / 8 = 45° per step
 
     [Header("Interaction Settings")]
+    public Camera interactionCamera;
+    public Transform cameraFocusPoint;
+    public Transform cameraOriginalPoint;
+    public float cameraMoveSpeed = 5f;
+    public float cameraRotateSpeed = 5f;
+    public float interactDistance = 3f;
     public KeyCode interactKey = KeyCode.E;
 
     private bool isInteracting = false;
-    private bool playerInTrigger = false; // 🔹 detects when player is inside the trigger zone
+    private bool playerInTrigger = false;
+    private bool hasInteractedOnce = false;
 
     private Transform player;
     private MonoBehaviour playerController;
@@ -32,25 +32,40 @@ public class CombinationLock : MonoBehaviour
         playerController = player?.GetComponent<MonoBehaviour>();
 
         initialRotations = new Quaternion[wheels.Length];
+
         for (int i = 0; i < wheels.Length; i++)
         {
             if (wheels[i] == null) continue;
 
+            // Clamp and sync baseline
             currentValues[i] = Mathf.Clamp(currentValues[i], 0, 7);
             initialRotations[i] = wheels[i].localRotation *
                                   Quaternion.Inverse(Quaternion.Euler(currentValues[i] * rotationPerStep, 0f, 0f));
         }
+
+        // ✅ Set camera instantly to original point to prevent start shake
+        if (interactionCamera != null && cameraOriginalPoint != null)
+        {
+            interactionCamera.transform.position = cameraOriginalPoint.position;
+            interactionCamera.transform.rotation = cameraOriginalPoint.rotation;
+        }
+
+        Debug.Log("Combination Lock initialized.");
     }
 
     void Update()
     {
         if (interactionCamera == null || player == null) return;
 
-        // 🔹 Only allow E interaction if player is inside trigger zone
+        // Allow interaction only when inside trigger
         if (playerInTrigger && Input.GetKeyDown(interactKey))
         {
-            if (!isInteracting) StartInteraction();
-            else StopInteraction();
+            if (!isInteracting)
+                StartInteraction();
+            else
+                StopInteraction();
+
+            hasInteractedOnce = true;
         }
 
         if (isInteracting)
@@ -58,7 +73,7 @@ public class CombinationLock : MonoBehaviour
             MoveCameraToFocus();
             HandleWheelClick();
         }
-        else
+        else if (hasInteractedOnce)
         {
             ReturnCameraToOriginal();
         }
@@ -73,6 +88,8 @@ public class CombinationLock : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+
+        Debug.Log("🟢 Player is now interacting with the lock.");
     }
 
     void StopInteraction()
@@ -84,6 +101,8 @@ public class CombinationLock : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        Debug.Log("🔴 Player stopped interacting with the lock.");
     }
 
     void MoveCameraToFocus()
@@ -143,6 +162,7 @@ public class CombinationLock : MonoBehaviour
     {
         currentValues[index] = (currentValues[index] + 1) % 8;
         ApplyWheelRotation(index);
+
         Debug.Log($"Wheel {index + 1} → {currentValues[index]}");
         CheckCombination();
     }
@@ -166,7 +186,7 @@ public class CombinationLock : MonoBehaviour
         Debug.Log("✅ Correct Combination! Lock opened!");
     }
 
-    // 🔹 Detect player entering trigger zone
+    // === Trigger Detection ===
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -179,7 +199,7 @@ public class CombinationLock : MonoBehaviour
             playerInTrigger = false;
     }
 
-    // 🔹 External proxy bridge (for LockRenderClickProxy)
+    // === External Proxy Support ===
     public bool GetIsInteracting() => isInteracting;
 
     public void HandleExternalWheelHit(RaycastHit hit)

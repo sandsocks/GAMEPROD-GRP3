@@ -46,11 +46,24 @@ public class Interactable : MonoBehaviour
     [TextArea(4, 10)] public string noteText = "This is the note text.";
     public KeyCode closeNoteKey = KeyCode.E;
 
+    [Header("Animation & Audio")]
+    public bool triggerAnimation = false;
+    public Animator animator;
+    public string animationTriggerName = "Activate";
+
+    public bool playSFX = false;
+    public AudioSource audioSource;
+    public AudioClip interactionSFX;
+
+    [Header("Dialogue Trigger")]
+    public bool triggerDialogue = false;
+    public DialogueTrigger dialogueTrigger; // External dialogue trigger reference
+
     private bool playerInRange = false;
     private bool dialogueActive = false;
     private bool dialogueFinished = false;
     private bool noteOpen = false;
-    private bool promptDismissed = false; // ✅ Tracks if prompt has been dismissed (for PromptOnly)
+    private bool promptDismissed = false;
 
     private void Start()
     {
@@ -64,7 +77,7 @@ public class Interactable : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
-            promptDismissed = false; // ✅ Reset prompt when re-entering
+            promptDismissed = false;
 
             if (promptText != null && (!dialogueFinished || repeatable))
             {
@@ -79,7 +92,7 @@ public class Interactable : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
-            promptDismissed = false; // ✅ Reset prompt for next time
+            promptDismissed = false;
 
             if (promptText != null)
                 StartCoroutine(FadeText(promptText, promptText.alpha, 0, promptFadeOutDuration));
@@ -98,7 +111,7 @@ public class Interactable : MonoBehaviour
             return;
         }
 
-        // ✅ Handle interaction if in range
+        // ✅ Handle interaction
         if (playerInRange && !dialogueActive && (!dialogueFinished || repeatable) && !noteOpen)
         {
             if (requireKeyPress && Input.GetKeyDown(interactKey))
@@ -110,7 +123,7 @@ public class Interactable : MonoBehaviour
 
     private void TryInteraction()
     {
-        // Requirement check
+        // ✅ Requirement check
         if (!string.IsNullOrEmpty(requiredItem) && !InventoryManager.Instance.HasItem(requiredItem))
         {
             if (dialogueText != null)
@@ -121,6 +134,10 @@ public class Interactable : MonoBehaviour
             return;
         }
 
+        // ✅ Animation / Audio / Dialogue trigger (works with any type)
+        TriggerExtras();
+
+        // ✅ Perform interaction type
         switch (interactionType)
         {
             case InteractionType.PromptOnly:
@@ -146,12 +163,26 @@ public class Interactable : MonoBehaviour
         }
     }
 
+    // ---------------- EXTRAS ----------------
+    private void TriggerExtras()
+    {
+        // 🎬 Animation
+        if (triggerAnimation && animator != null && !string.IsNullOrEmpty(animationTriggerName))
+            animator.SetTrigger(animationTriggerName);
+
+        // 🔊 Sound effect
+        if (playSFX && audioSource != null && interactionSFX != null)
+            audioSource.PlayOneShot(interactionSFX);
+
+        // 💬 Dialogue trigger
+        if (triggerDialogue && dialogueTrigger != null)
+            dialogueTrigger.StartDialogue();
+    }
+
     // ---------------- PROMPT ONLY ----------------
     private void HandlePromptOnly()
     {
-        if (promptDismissed || promptText == null) return; // ✅ Already dismissed
-
-        // Fade out prompt and mark it dismissed
+        if (promptDismissed || promptText == null) return;
         StartCoroutine(FadeText(promptText, promptText.alpha, 0, promptFadeOutDuration));
         promptDismissed = true;
     }

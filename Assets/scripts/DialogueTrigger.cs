@@ -1,27 +1,31 @@
 ﻿using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
 public class DialogueTrigger : MonoBehaviour
 {
     [Header("Dialogue Settings")]
-    [TextArea(2, 5)] public string[] dialogueLines;
+    public DialogueData dialogueData;  // ✅ ScriptableObject reference
     public float typeSpeed = 0.03f;
     public float fadeSpeed = 1f;
     public float autoNextDelay = 2f;
-    public bool canRetrigger = false; // allow re-trigger after finish
 
     [Header("UI References")]
     public CanvasGroup dialoguePanel;
     public TextMeshProUGUI dialogueText;
+    public TextMeshProUGUI nameText;
+    public Image characterImageUI;
+
+    [Header("Audio")]
+    public AudioSource voiceSource;
 
     private static Queue<DialogueTrigger> dialogueQueue = new Queue<DialogueTrigger>();
     private static bool dialogueRunning = false;
 
     private int currentLine = 0;
     private bool isTyping = false;
-    private bool hasTriggered = false; // ✅ prevents multi-trigger spam
     private Coroutine typingCoroutine;
 
     private void Start()
@@ -30,15 +34,19 @@ public class DialogueTrigger : MonoBehaviour
         {
             dialoguePanel.alpha = 0f;
             dialoguePanel.gameObject.SetActive(true);
-
         }
+
+        if (voiceSource != null)
+            voiceSource.playOnAwake = false;
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void StartDialogue()
     {
-        if (!other.CompareTag("Player")) return;
-        if (hasTriggered && !canRetrigger) return; // ✅ stop duplicates
-        hasTriggered = true;
+        if (dialogueData == null)
+        {
+            Debug.LogWarning("DialogueTrigger: No DialogueData assigned!");
+            return;
+        }
 
         if (!dialogueQueue.Contains(this))
             dialogueQueue.Enqueue(this);
@@ -51,18 +59,12 @@ public class DialogueTrigger : MonoBehaviour
         if (!dialogueRunning && dialogueQueue.Count > 0)
         {
             DialogueTrigger next = dialogueQueue.Dequeue();
-            next.StartDialogue();
+            next.RunDialogue();
         }
     }
 
-    private void StartDialogue()
+    private void RunDialogue()
     {
-        if (dialoguePanel == null || dialogueText == null)
-        {
-            Debug.LogError("DialogueTrigger: Missing UI references!");
-            return;
-        }
-
         dialogueRunning = true;
         currentLine = 0;
         StartCoroutine(FadeInAndStart());
@@ -84,9 +86,26 @@ public class DialogueTrigger : MonoBehaviour
 
     private void DisplayLine()
     {
+        if (dialogueData == null) return;
+
         if (typingCoroutine != null) StopCoroutine(typingCoroutine);
         dialogueText.text = "";
-        typingCoroutine = StartCoroutine(TypeLine(dialogueLines[currentLine]));
+
+        var lineData = dialogueData.lines[currentLine];
+
+        // Update UI
+        if (nameText != null) nameText.text = lineData.speakerName;
+        if (characterImageUI != null) characterImageUI.sprite = lineData.characterImage;
+
+        // Play voice
+        if (voiceSource != null && lineData.voiceClip != null)
+        {
+            voiceSource.Stop();
+            voiceSource.clip = lineData.voiceClip;
+            voiceSource.Play();
+        }
+
+        typingCoroutine = StartCoroutine(TypeLine(lineData.text));
     }
 
     private IEnumerator TypeLine(string line)
@@ -112,7 +131,7 @@ public class DialogueTrigger : MonoBehaviour
             if (isTyping)
             {
                 StopCoroutine(typingCoroutine);
-                dialogueText.text = dialogueLines[currentLine];
+                dialogueText.text = dialogueData.lines[currentLine].text;
                 isTyping = false;
             }
             else
@@ -125,7 +144,7 @@ public class DialogueTrigger : MonoBehaviour
     private void NextLine()
     {
         currentLine++;
-        if (currentLine < dialogueLines.Length)
+        if (currentLine < dialogueData.lines.Length)
         {
             DisplayLine();
         }
@@ -148,7 +167,7 @@ public class DialogueTrigger : MonoBehaviour
         dialoguePanel.alpha = 0f;
         dialogueRunning = false;
 
-        if (canRetrigger) hasTriggered = false; // reset for reuse
+        if (voiceSource != null) voiceSource.Stop();
 
         TryStartNextDialogue();
     }

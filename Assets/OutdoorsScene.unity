@@ -649,7 +649,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 271}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &53721085
@@ -699,15 +699,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 75
+  m_fontSizeBase: 75
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -737,7 +737,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -251.04747, y: -47.688717, z: -248.61098, w: -584.8714}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1233,19 +1233,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37fde12eacbeea240b26541c31c153c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueLines:
-  - 'test dialogue 1
-
-'
-  - test dialogue 2
-  - test dialogue 3
-  - test dialogue 4
+  dialogueData: {fileID: 0}
   typeSpeed: 0.03
   fadeSpeed: 1
   autoNextDelay: 2
-  canRetrigger: 0
   dialoguePanel: {fileID: 1655856910}
   dialogueText: {fileID: 1638758218}
+  nameText: {fileID: 0}
+  characterImageUI: {fileID: 0}
+  voiceSource: {fileID: 0}
 --- !u!65 &118250875
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1377,6 +1373,14 @@ MonoBehaviour:
   noteText: "To find the treasure,\r\nTurn to nature and you\u2019ll see,\r\nThe
     clue to the key.\r\n"
   closeNoteKey: 101
+  triggerAnimation: 0
+  animator: {fileID: 0}
+  animationTriggerName: Activate
+  playSFX: 0
+  audioSource: {fileID: 0}
+  interactionSFX: {fileID: 0}
+  triggerDialogue: 0
+  dialogueTrigger: {fileID: 0}
 --- !u!4 &143440301 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5503057903223923617, guid: 86e29605cb887d4489df79b439c5d9a4, type: 3}
@@ -2170,7 +2174,7 @@ RectTransform:
   m_GameObject: {fileID: 241336248}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2806, y: 1.2806, z: 1.2806}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 53721084}
@@ -4972,6 +4976,14 @@ MonoBehaviour:
   itemIcon: {fileID: 0}
   noteText: "Ball _ \nJug _ \nToilet _\n"
   closeNoteKey: 101
+  triggerAnimation: 0
+  animator: {fileID: 0}
+  animationTriggerName: Activate
+  playSFX: 0
+  audioSource: {fileID: 0}
+  interactionSFX: {fileID: 0}
+  triggerDialogue: 0
+  dialogueTrigger: {fileID: 0}
 --- !u!1001 &638659475
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5576,6 +5588,14 @@ MonoBehaviour:
   itemIcon: {fileID: 0}
   noteText: This is the note text.
   closeNoteKey: 101
+  triggerAnimation: 0
+  animator: {fileID: 0}
+  animationTriggerName: Activate
+  playSFX: 0
+  audioSource: {fileID: 0}
+  interactionSFX: {fileID: 0}
+  triggerDialogue: 0
+  dialogueTrigger: {fileID: 0}
 --- !u!135 &696927073
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -6764,6 +6784,136 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!1 &867872498
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 867872503}
+  - component: {fileID: 867872502}
+  - component: {fileID: 867872501}
+  - component: {fileID: 867872500}
+  - component: {fileID: 867872499}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &867872499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867872498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37fde12eacbeea240b26541c31c153c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueData: {fileID: 0}
+  typeSpeed: 0.03
+  fadeSpeed: 1
+  autoNextDelay: 2
+  dialoguePanel: {fileID: 0}
+  dialogueText: {fileID: 0}
+  nameText: {fileID: 0}
+  characterImageUI: {fileID: 0}
+  voiceSource: {fileID: 0}
+--- !u!65 &867872500
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867872498}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &867872501
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867872498}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &867872502
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867872498}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &867872503
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867872498}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -24.047335, y: 0.0012991129, z: -18.97812}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &876735670 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7836627356837591812, guid: f9ee1f02b6829bb4385061f97a96534b, type: 3}
@@ -7515,6 +7665,14 @@ MonoBehaviour:
   itemIcon: {fileID: 0}
   noteText: This is the note text.
   closeNoteKey: 101
+  triggerAnimation: 0
+  animator: {fileID: 0}
+  animationTriggerName: Activate
+  playSFX: 0
+  audioSource: {fileID: 0}
+  interactionSFX: {fileID: 0}
+  triggerDialogue: 0
+  dialogueTrigger: {fileID: 0}
 --- !u!1 &963209877 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6851297184777207476, guid: 1f4d8997f4d73564c8c06c403a646fb2, type: 3}
@@ -7576,7 +7734,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 318}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &965007278
@@ -7626,15 +7784,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 75
+  m_fontSizeBase: 75
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -7664,7 +7822,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -249.98317, y: 0, z: -250.15588, w: -636.40924}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -8209,7 +8367,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 271}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1015948341
@@ -8259,15 +8417,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 75
+  m_fontSizeBase: 75
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -8297,7 +8455,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -251.63718, y: -44.907967, z: -250.68005, w: -589.18896}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -8340,6 +8498,7 @@ MonoBehaviour:
   cameraOriginalPoint: {fileID: 752737350}
   cameraMoveSpeed: 4
   cameraRotateSpeed: 5
+  interactDistance: 3
   interactKey: 101
 --- !u!64 &1018064103
 MeshCollider:
@@ -8420,6 +8579,14 @@ MonoBehaviour:
   itemIcon: {fileID: 0}
   noteText: This is the note text.
   closeNoteKey: 101
+  triggerAnimation: 0
+  animator: {fileID: 0}
+  animationTriggerName: Activate
+  playSFX: 0
+  audioSource: {fileID: 0}
+  interactionSFX: {fileID: 0}
+  triggerDialogue: 0
+  dialogueTrigger: {fileID: 0}
 --- !u!1001 &1022178012
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9178,6 +9345,14 @@ MonoBehaviour:
 
     On the land that showcases its beauty'
   closeNoteKey: 101
+  triggerAnimation: 0
+  animator: {fileID: 0}
+  animationTriggerName: Activate
+  playSFX: 0
+  audioSource: {fileID: 0}
+  interactionSFX: {fileID: 0}
+  triggerDialogue: 0
+  dialogueTrigger: {fileID: 0}
 --- !u!1 &1090388846
 GameObject:
   m_ObjectHideFlags: 0
@@ -10951,6 +11126,14 @@ MonoBehaviour:
   itemIcon: {fileID: 0}
   noteText: This is the note text.
   closeNoteKey: 101
+  triggerAnimation: 0
+  animator: {fileID: 0}
+  animationTriggerName: Activate
+  playSFX: 0
+  audioSource: {fileID: 0}
+  interactionSFX: {fileID: 0}
+  triggerDialogue: 0
+  dialogueTrigger: {fileID: 0}
 --- !u!135 &1302265701
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -11218,11 +11401,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5503057903223923617, guid: 86e29605cb887d4489df79b439c5d9a4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.365
+      value: -4.308
       objectReference: {fileID: 0}
     - target: {fileID: 5503057903223923617, guid: 86e29605cb887d4489df79b439c5d9a4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.254
+      value: 1.275
       objectReference: {fileID: 0}
     - target: {fileID: 5503057903223923617, guid: 86e29605cb887d4489df79b439c5d9a4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -14478,7 +14661,7 @@ RectTransform:
   m_GameObject: {fileID: 1733851522}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2806, y: 1.2806, z: 1.2806}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1015948340}
@@ -17235,6 +17418,14 @@ MonoBehaviour:
   itemIcon: {fileID: 21300000, guid: 7a5f22fc6b7d94d599a544ecd9eb1bf3, type: 3}
   noteText: This is the note text.
   closeNoteKey: 101
+  triggerAnimation: 0
+  animator: {fileID: 0}
+  animationTriggerName: Activate
+  playSFX: 0
+  audioSource: {fileID: 0}
+  interactionSFX: {fileID: 0}
+  triggerDialogue: 0
+  dialogueTrigger: {fileID: 0}
 --- !u!135 &2080491179
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -18381,7 +18572,7 @@ RectTransform:
   m_GameObject: {fileID: 2135368825}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2806, y: 1.2806, z: 1.2806}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 965007277}
@@ -18560,3 +18751,4 @@ SceneRoots:
   - {fileID: 668546430}
   - {fileID: 1647143192}
   - {fileID: 1812825207}
+  - {fileID: 867872503}
