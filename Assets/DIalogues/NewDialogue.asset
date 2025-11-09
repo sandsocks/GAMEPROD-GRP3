@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: NewDialogue
   m_EditorClassIdentifier: 
   lines:
-  - text: 
-    speakerName: 
+  - speakerName: dialogue 2
+    text: asdasd
     characterImage: {fileID: 0}
     voiceClip: {fileID: 0}
-  - text: 
-    speakerName: 
+  - speakerName: dialogue test 2
+    text: dashfvahjs dasdasd
     characterImage: {fileID: 0}
     voiceClip: {fileID: 0}

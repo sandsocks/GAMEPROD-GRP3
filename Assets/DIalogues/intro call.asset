@@ -14,7 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   lines:
   - text: asdasdasdasdasd
-    speakerName: 
+    speakerName: sd
+    characterImage: {fileID: 0}
+    voiceClip: {fileID: 0}
+  - text: asdasdasd
+    speakerName: asd
+    characterImage: {fileID: 0}
+    voiceClip: {fileID: 0}
+  - text: asdasdasd
+    speakerName: asd
+    characterImage: {fileID: 0}
+    voiceClip: {fileID: 0}
+  - text: asdasdasd
+    speakerName: asd
+    characterImage: {fileID: 0}
+    voiceClip: {fileID: 0}
+  - text: asdasdasd
+    speakerName: asd
+    characterImage: {fileID: 0}
+    voiceClip: {fileID: 0}
+  - text: asdasdasd
+    speakerName: asd
     characterImage: {fileID: 0}
     voiceClip: {fileID: 0}
   - text: asdasdasd
@@ -22,19 +42,7 @@ MonoBehaviour:
     characterImage: {fileID: 0}
     voiceClip: {fileID: 0}
   - text: asdasdasd
-    speakerName: 
-    characterImage: {fileID: 0}
-    voiceClip: {fileID: 0}
-  - text: asdasdasd
-    speakerName: 
-    characterImage: {fileID: 0}
-    voiceClip: {fileID: 0}
-  - text: asdasdasd
-    speakerName: 
-    characterImage: {fileID: 0}
-    voiceClip: {fileID: 0}
-  - text: asdasdasd
-    speakerName: 
+    speakerName: asd
     characterImage: {fileID: 0}
     voiceClip: {fileID: 0}
   - text: asdasdasd

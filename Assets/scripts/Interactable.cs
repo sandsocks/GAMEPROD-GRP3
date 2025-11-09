@@ -11,7 +11,6 @@ public class Interactable : MonoBehaviour
 
     [Header("UI References")]
     public TextMeshProUGUI promptText;
-    public TextMeshProUGUI dialogueText;
     public GameObject notePanel;
     public TextMeshProUGUI noteTextUI;
 
@@ -24,10 +23,7 @@ public class Interactable : MonoBehaviour
     public float promptFadeOutDuration = 0.5f;
 
     [Header("Dialogue Settings")]
-    [TextArea] public string dialogueMessage = "Hello, this is the dialogue.";
-    public float dialogueFadeInDuration = 1f;
-    public float dialogueFadeOutDuration = 1f;
-    public float dialogueDisplayDuration = 3f;
+    public DialogueData dialogueData; // 🎯 ScriptableObject assigned here
     public bool repeatable = true;
 
     [Header("Output Settings")]
@@ -55,10 +51,6 @@ public class Interactable : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip interactionSFX;
 
-    [Header("Dialogue Trigger")]
-    public bool triggerDialogue = false;
-    public DialogueTrigger dialogueTrigger; // External dialogue trigger reference
-
     private bool playerInRange = false;
     private bool dialogueActive = false;
     private bool dialogueFinished = false;
@@ -68,7 +60,6 @@ public class Interactable : MonoBehaviour
     private void Start()
     {
         if (promptText != null) promptText.alpha = 0;
-        if (dialogueText != null) dialogueText.alpha = 0;
         if (notePanel != null) notePanel.SetActive(false);
     }
 
@@ -104,14 +95,12 @@ public class Interactable : MonoBehaviour
 
     private void Update()
     {
-        // ✅ Close note first if open
         if (noteOpen && Input.GetKeyDown(closeNoteKey))
         {
             CloseNote();
             return;
         }
 
-        // ✅ Handle interaction
         if (playerInRange && !dialogueActive && (!dialogueFinished || repeatable) && !noteOpen)
         {
             if (requireKeyPress && Input.GetKeyDown(interactKey))
@@ -123,21 +112,19 @@ public class Interactable : MonoBehaviour
 
     private void TryInteraction()
     {
-        // ✅ Requirement check
+        // Check required item
         if (!string.IsNullOrEmpty(requiredItem) && !InventoryManager.Instance.HasItem(requiredItem))
         {
-            if (dialogueText != null)
+            // Show temporary message using DialogueManager
+            if (DialogueManager.Instance != null)
             {
-                dialogueText.text = missingItemMessage;
-                StartCoroutine(TemporaryMessage());
+                DialogueManager.Instance.ShowTemporaryMessage(missingItemMessage);
             }
             return;
         }
 
-        // ✅ Animation / Audio / Dialogue trigger (works with any type)
         TriggerExtras();
 
-        // ✅ Perform interaction type
         switch (interactionType)
         {
             case InteractionType.PromptOnly:
@@ -145,7 +132,7 @@ public class Interactable : MonoBehaviour
                 break;
 
             case InteractionType.Dialogue:
-                StartCoroutine(Output());
+                StartCoroutine(StartDialogue());
                 break;
 
             case InteractionType.Note:
@@ -156,30 +143,27 @@ public class Interactable : MonoBehaviour
                 if (givesItem)
                 {
                     InventoryManager.Instance.AddItem(itemIcon, itemName, itemDescription);
-                    dialogueMessage = $"You picked up {itemName}!";
-                    StartCoroutine(Output());
+                    StartCoroutine(StartDialogue());
                 }
                 break;
         }
     }
 
-    // ---------------- EXTRAS ----------------
     private void TriggerExtras()
     {
-        // 🎬 Animation
+        // Animation
         if (triggerAnimation && animator != null && !string.IsNullOrEmpty(animationTriggerName))
             animator.SetTrigger(animationTriggerName);
 
-        // 🔊 Sound effect
-        if (playSFX && audioSource != null && interactionSFX != null)
-            audioSource.PlayOneShot(interactionSFX);
-
-        // 💬 Dialogue trigger
-        if (triggerDialogue && dialogueTrigger != null)
-            dialogueTrigger.StartDialogue();
+        // SFX
+        if (playSFX && interactionSFX != null)
+        {
+            AudioSource source = audioSource != null ? audioSource : DialogueManager.Instance?.voiceSource;
+            if (source != null)
+                source.PlayOneShot(interactionSFX);
+        }
     }
 
-    // ---------------- PROMPT ONLY ----------------
     private void HandlePromptOnly()
     {
         if (promptDismissed || promptText == null) return;
@@ -187,7 +171,6 @@ public class Interactable : MonoBehaviour
         promptDismissed = true;
     }
 
-    // ---------------- NOTE ----------------
     private void OpenNote()
     {
         if (notePanel != null && noteTextUI != null)
@@ -217,21 +200,25 @@ public class Interactable : MonoBehaviour
         }
     }
 
-    // ---------------- DIALOGUE ----------------
-    private IEnumerator Output()
+    private IEnumerator StartDialogue()
     {
+        if (dialogueData == null || DialogueManager.Instance == null)
+        {
+            Debug.LogWarning($"Interactable '{name}' has no DialogueData or DialogueManager assigned!");
+            yield break;
+        }
+
         dialogueActive = true;
 
         if (promptText != null)
             StartCoroutine(FadeText(promptText, promptText.alpha, 0, promptFadeOutDuration));
 
-        if (dialogueText != null)
-        {
-            dialogueText.text = dialogueMessage;
-            yield return StartCoroutine(FadeText(dialogueText, 0, 1, dialogueFadeInDuration));
-            yield return new WaitForSeconds(dialogueDisplayDuration);
-            yield return StartCoroutine(FadeText(dialogueText, dialogueText.alpha, 0, dialogueFadeOutDuration));
-        }
+        // Use DialogueManager to play dialogue
+        DialogueManager.Instance.StartDialogue(dialogueData);
+
+        // Wait until dialogue finishes
+        while (DialogueManager.Instance.IsDialogueRunning)
+            yield return null;
 
         dialogueActive = false;
         dialogueFinished = true;
@@ -241,13 +228,6 @@ public class Interactable : MonoBehaviour
 
         if (removeAfterInteraction && (!repeatable || !playerInRange))
             Destroy(gameObject);
-    }
-
-    private IEnumerator TemporaryMessage()
-    {
-        yield return StartCoroutine(FadeText(dialogueText, 0, 1, 0.5f));
-        yield return new WaitForSeconds(1.5f);
-        yield return StartCoroutine(FadeText(dialogueText, dialogueText.alpha, 0, 0.5f));
     }
 
     private IEnumerator FadeText(TextMeshProUGUI textElement, float from, float to, float duration)

@@ -17,9 +17,20 @@ public class CombinationLock : MonoBehaviour
     public float interactDistance = 3f;
     public KeyCode interactKey = KeyCode.E;
 
+    [Header("Reward Settings")]
+    public bool giveRewardItem = true;
+    public Sprite rewardItemIcon;
+    public string rewardItemName = "Vault Key";
+    [TextArea(2, 4)] public string rewardItemDescription = "A heavy metal key used to open the vault door.";
+
+    [Header("Optional Animation")]
+    public Animator unlockAnimator;
+    public string unlockTriggerName = "Unlock";
+
     private bool isInteracting = false;
     private bool playerInTrigger = false;
     private bool hasInteractedOnce = false;
+    private bool isUnlocked = false;
 
     private Transform player;
     private MonoBehaviour playerController;
@@ -37,13 +48,13 @@ public class CombinationLock : MonoBehaviour
         {
             if (wheels[i] == null) continue;
 
-            // Clamp and sync baseline
+           
             currentValues[i] = Mathf.Clamp(currentValues[i], 0, 7);
             initialRotations[i] = wheels[i].localRotation *
                                   Quaternion.Inverse(Quaternion.Euler(currentValues[i] * rotationPerStep, 0f, 0f));
         }
 
-        // ✅ Set camera instantly to original point to prevent start shake
+       
         if (interactionCamera != null && cameraOriginalPoint != null)
         {
             interactionCamera.transform.position = cameraOriginalPoint.position;
@@ -57,7 +68,7 @@ public class CombinationLock : MonoBehaviour
     {
         if (interactionCamera == null || player == null) return;
 
-        // Allow interaction only when inside trigger
+   
         if (playerInTrigger && Input.GetKeyDown(interactKey))
         {
             if (!isInteracting)
@@ -177,6 +188,8 @@ public class CombinationLock : MonoBehaviour
 
     void CheckCombination()
     {
+        if (isUnlocked) return;
+
         for (int i = 0; i < wheels.Length; i++)
         {
             if (currentValues[i] != correctCombination[i])
@@ -184,6 +197,24 @@ public class CombinationLock : MonoBehaviour
         }
 
         Debug.Log("✅ Correct Combination! Lock opened!");
+        isUnlocked = true;
+
+       
+        if (giveRewardItem && InventoryManager.Instance != null)
+        {
+            InventoryManager.Instance.AddItem(rewardItemIcon, rewardItemName, rewardItemDescription);
+            Debug.Log($"🎁 Player received: {rewardItemName}");
+        }
+
+    
+        if (unlockAnimator != null && !string.IsNullOrEmpty(unlockTriggerName))
+        {
+            unlockAnimator.SetTrigger(unlockTriggerName);
+            Debug.Log("🔓 Unlock animation triggered!");
+        }
+
+       
+        StopInteraction();
     }
 
     // === Trigger Detection ===
