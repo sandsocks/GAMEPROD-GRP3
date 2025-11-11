@@ -3194,6 +3194,8 @@ Transform:
   - {fileID: 632684721}
   - {fileID: 696927071}
   - {fileID: 17619247}
+  - {fileID: 1475209248}
+  - {fileID: 621393827}
   m_Father: {fileID: 20366241}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &391461972 stripped
@@ -4951,6 +4953,114 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!1001 &621393826
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 388647914}
+    m_Modifications:
+    - target: {fileID: 3499321576355623856, guid: bc21045d3561b68418c96017335c4a9f, type: 3}
+      propertyPath: m_Name
+      value: Notebook
+      objectReference: {fileID: 0}
+    - target: {fileID: 4313259606328027402, guid: bc21045d3561b68418c96017335c4a9f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.928
+      objectReference: {fileID: 0}
+    - target: {fileID: 4313259606328027402, guid: bc21045d3561b68418c96017335c4a9f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.3499999
+      objectReference: {fileID: 0}
+    - target: {fileID: 4313259606328027402, guid: bc21045d3561b68418c96017335c4a9f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.3919983
+      objectReference: {fileID: 0}
+    - target: {fileID: 4313259606328027402, guid: bc21045d3561b68418c96017335c4a9f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.686759
+      objectReference: {fileID: 0}
+    - target: {fileID: 4313259606328027402, guid: bc21045d3561b68418c96017335c4a9f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4313259606328027402, guid: bc21045d3561b68418c96017335c4a9f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.72688526
+      objectReference: {fileID: 0}
+    - target: {fileID: 4313259606328027402, guid: bc21045d3561b68418c96017335c4a9f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4313259606328027402, guid: bc21045d3561b68418c96017335c4a9f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4313259606328027402, guid: bc21045d3561b68418c96017335c4a9f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 93.252
+      objectReference: {fileID: 0}
+    - target: {fileID: 4313259606328027402, guid: bc21045d3561b68418c96017335c4a9f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3499321576355623856, guid: bc21045d3561b68418c96017335c4a9f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 621393829}
+  m_SourcePrefab: {fileID: 100100000, guid: bc21045d3561b68418c96017335c4a9f, type: 3}
+--- !u!4 &621393827 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4313259606328027402, guid: bc21045d3561b68418c96017335c4a9f, type: 3}
+  m_PrefabInstance: {fileID: 621393826}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &621393828 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3499321576355623856, guid: bc21045d3561b68418c96017335c4a9f, type: 3}
+  m_PrefabInstance: {fileID: 621393826}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &621393829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 621393828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e8b9e2ba6c7b6d488744938031021da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactable
+  interactionType: 1
+  promptText: {fileID: 0}
+  notePanel: {fileID: 0}
+  noteTextUI: {fileID: 0}
+  promptMessage: Press E to interact
+  missingItemMessage: You need a specific item!
+  interactKey: 101
+  requireKeyPress: 1
+  promptFadeInDuration: 0.5
+  promptFadeOutDuration: 0.5
+  dialogueData: {fileID: 11400000, guid: 52817bb444ea4ea4c9513dbe341df4bb, type: 2}
+  repeatable: 1
+  removeAfterInteraction: 0
+  requiredItem: 
+  givesItem: 0
+  itemName: New Item
+  itemDescription: Item description goes here.
+  itemIcon: {fileID: 0}
+  noteText: This is the note text.
+  closeNoteKey: 101
+  triggerAnimation: 0
+  animator: {fileID: 0}
+  animationTriggerName: Activate
+  playSFX: 0
+  audioSource: {fileID: 0}
+  interactionSFX: {fileID: 0}
 --- !u!1 &623533201 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5604897844086618865, guid: 1f4d8997f4d73564c8c06c403a646fb2, type: 3}
@@ -12826,6 +12936,114 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4138052842913210707, guid: 9b5dc512ec347e34eaaae1f9cf497537, type: 3}
   m_PrefabInstance: {fileID: 1428170194}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1475209247
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 388647914}
+    m_Modifications:
+    - target: {fileID: 8479191237077330252, guid: f296379057ff5cd429c9d0cd2c03eb7b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -15.533999
+      objectReference: {fileID: 0}
+    - target: {fileID: 8479191237077330252, guid: f296379057ff5cd429c9d0cd2c03eb7b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.03763604
+      objectReference: {fileID: 0}
+    - target: {fileID: 8479191237077330252, guid: f296379057ff5cd429c9d0cd2c03eb7b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.01499939
+      objectReference: {fileID: 0}
+    - target: {fileID: 8479191237077330252, guid: f296379057ff5cd429c9d0cd2c03eb7b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8479191237077330252, guid: f296379057ff5cd429c9d0cd2c03eb7b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8479191237077330252, guid: f296379057ff5cd429c9d0cd2c03eb7b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8479191237077330252, guid: f296379057ff5cd429c9d0cd2c03eb7b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8479191237077330252, guid: f296379057ff5cd429c9d0cd2c03eb7b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8479191237077330252, guid: f296379057ff5cd429c9d0cd2c03eb7b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8479191237077330252, guid: f296379057ff5cd429c9d0cd2c03eb7b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9144544947262272502, guid: f296379057ff5cd429c9d0cd2c03eb7b, type: 3}
+      propertyPath: m_Name
+      value: Soccer Ball
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9144544947262272502, guid: f296379057ff5cd429c9d0cd2c03eb7b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1475209250}
+  m_SourcePrefab: {fileID: 100100000, guid: f296379057ff5cd429c9d0cd2c03eb7b, type: 3}
+--- !u!4 &1475209248 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8479191237077330252, guid: f296379057ff5cd429c9d0cd2c03eb7b, type: 3}
+  m_PrefabInstance: {fileID: 1475209247}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1475209249 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9144544947262272502, guid: f296379057ff5cd429c9d0cd2c03eb7b, type: 3}
+  m_PrefabInstance: {fileID: 1475209247}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1475209250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1475209249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e8b9e2ba6c7b6d488744938031021da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactable
+  interactionType: 1
+  promptText: {fileID: 0}
+  notePanel: {fileID: 0}
+  noteTextUI: {fileID: 0}
+  promptMessage: Press E to interact
+  missingItemMessage: You need a specific item!
+  interactKey: 101
+  requireKeyPress: 1
+  promptFadeInDuration: 0.5
+  promptFadeOutDuration: 0.5
+  dialogueData: {fileID: 11400000, guid: 3049fa918d4f9aa4c8ed3cc16fef9355, type: 2}
+  repeatable: 1
+  removeAfterInteraction: 0
+  requiredItem: 
+  givesItem: 0
+  itemName: New Item
+  itemDescription: Item description goes here.
+  itemIcon: {fileID: 0}
+  noteText: This is the note text.
+  closeNoteKey: 101
+  triggerAnimation: 0
+  animator: {fileID: 0}
+  animationTriggerName: Activate
+  playSFX: 0
+  audioSource: {fileID: 0}
+  interactionSFX: {fileID: 0}
 --- !u!1 &1479844865 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6477405744068065767, guid: 1f4d8997f4d73564c8c06c403a646fb2, type: 3}

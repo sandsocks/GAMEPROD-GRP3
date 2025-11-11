@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   lines:
   - speakerName: Clara
-    text: "(Chuckles) Mr. Teddy\u2026 He was my best friend until I lost him. I hope
-      I can still find him here."
+    text: "No way! It\u2019s still here? Maybe I should try playing with Dad again\u2026
+      If the old man can still kick a ball that is."
     characterImage: {fileID: 0}
     voiceClip: {fileID: 0}
