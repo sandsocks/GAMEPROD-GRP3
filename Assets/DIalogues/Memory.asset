@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b658e768e354e44491217619809b1bd, type: 3}
+  m_Name: Memory
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  lines:
+  - speakerName: Clara
+    text: Dad? Where are you going? Dad!
+    characterImage: {fileID: 0}
+    voiceClip: {fileID: 0}
+  - speakerName: Dad
+    text: Not now, Clara!
+    characterImage: {fileID: 0}
+    voiceClip: {fileID: 0}
+  - speakerName: Mom
+    text: Clara, come back inside!
+    characterImage: {fileID: 0}
+    voiceClip: {fileID: 0}
+  - speakerName: Clara
+    text: "You made Dad leave again! You promised he\u2019d stay this time!"
+    characterImage: {fileID: 0}
+    voiceClip: {fileID: 0}
+  - speakerName: Mom
+    text: I know, Clara.
+    characterImage: {fileID: 0}
+    voiceClip: {fileID: 0}
+  - speakerName: Clara
+    text: Tell him to come back!
+    characterImage: {fileID: 0}
+    voiceClip: {fileID: 0}
+  - speakerName: Mom
+    text: "I can\u2019t, baby. I\u2019m sorry."
+    characterImage: {fileID: 0}
+    voiceClip: {fileID: 0}

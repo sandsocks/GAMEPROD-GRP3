@@ -10,42 +10,41 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b658e768e354e44491217619809b1bd, type: 3}
-  m_Name: intro call
+  m_Name: Intro Dialogue
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   lines:
-  - text: asdasdasdasdasd
-    speakerName: sd
+  - speakerName: Dad
+    text: Clara, did you make it there safe?
     characterImage: {fileID: 0}
     voiceClip: {fileID: 0}
-  - text: asdasdasd
-    speakerName: asd
+  - speakerName: Clara
+    text: "Yes, Dad. It\u2019s like nothing changed at all here. The welcome sign
+      I made in art class is still on the door."
     characterImage: {fileID: 0}
     voiceClip: {fileID: 0}
-  - text: asdasdasd
-    speakerName: asd
+  - speakerName: Dad
+    text: "Is that so? After all, we haven\u2019t been there for a while. My old
+      necktie might still be in there."
     characterImage: {fileID: 0}
     voiceClip: {fileID: 0}
-  - text: asdasdasd
-    speakerName: asd
+  - speakerName: Clara
+    text: "I can check if you\u2019d like."
     characterImage: {fileID: 0}
     voiceClip: {fileID: 0}
-  - text: asdasdasd
-    speakerName: asd
+  - speakerName: Dad
+    text: "Don\u2019t bother. I like the one you made me."
     characterImage: {fileID: 0}
     voiceClip: {fileID: 0}
-  - text: asdasdasd
-    speakerName: asd
+  - speakerName: Clara
+    text: "Darn, I think I dropped my key\u2026"
     characterImage: {fileID: 0}
     voiceClip: {fileID: 0}
-  - text: asdasdasd
-    speakerName: 
+  - speakerName: Dad
+    text: "If I\u2019m not mistaken, your mom and I left a spare key somewhere by
+      the door."
     characterImage: {fileID: 0}
     voiceClip: {fileID: 0}
-  - text: asdasdasd
-    speakerName: asd
-    characterImage: {fileID: 0}
-    voiceClip: {fileID: 0}
-  - text: asdasdasd
-    speakerName: 
+  - speakerName: Clara
+    text: It might be under the mat like before.
     characterImage: {fileID: 0}
     voiceClip: {fileID: 0}

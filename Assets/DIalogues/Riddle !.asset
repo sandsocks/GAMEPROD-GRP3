@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b658e768e354e44491217619809b1bd, type: 3}
+  m_Name: Riddle !
+  m_EditorClassIdentifier: 
+  lines:
+  - speakerName: Clara
+    text: "To find the treasure, turn to nature and you\u2019ll see the clue to the
+      key.\r\n"
+    characterImage: {fileID: 0}
+    voiceClip: {fileID: 0}
+  - speakerName: Clara
+    text: 'She left a riddle. '
+    characterImage: {fileID: 0}
+    voiceClip: {fileID: 0}
+  - speakerName: Dad
+    text: "(chuckles) Even in heaven, she still has puzzles for us to solve. Well\u2026
+      for you to solve. "
+    characterImage: {fileID: 0}
+    voiceClip: {fileID: 0}
+  - speakerName: Clara
+    text: "I don\u2019t want to play her stupid games! I just want to grab my stuff
+      and get out of here!"
+    characterImage: {fileID: 0}
+    voiceClip: {fileID: 0}
+  - speakerName: Clara
+    text: "(sighs) Thanks, dad. I\u2019ll call you back."
+    characterImage: {fileID: 0}
+    voiceClip: {fileID: 0}
+  - speakerName: Clara
+    text: "To find the treasure, turn to nature and you\u2019ll see the clue to the
+      key.\r\n"
+    characterImage: {fileID: 0}
+    voiceClip: {fileID: 0}

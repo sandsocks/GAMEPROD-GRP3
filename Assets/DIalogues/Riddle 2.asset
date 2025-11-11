@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b658e768e354e44491217619809b1bd, type: 3}
+  m_Name: Riddle 2
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  lines:
+  - speakerName: Clara
+    text: 'A pirate buries his gold close to his stronghold. He places an X to mark
+      his booty on the land that showcases its beauty
+
+'
+    characterImage: {fileID: 0}
+    voiceClip: {fileID: 0}
+  - speakerName: Clara
+    text: Dad, I kind of have a problem.
+    characterImage: {fileID: 0}
+    voiceClip: {fileID: 0}
+  - speakerName: Dad
+    text: What is it, Clara?
+    characterImage: {fileID: 0}
+    voiceClip: {fileID: 0}
+  - speakerName: Clara
+    text: "If my guess is correct, I have to dig up the ground for the key. You wouldn\u2019t
+      have any tools left here, would you?"
+    characterImage: {fileID: 0}
+    voiceClip: {fileID: 0}
+  - speakerName: Dad
+    text: "Now that you mention it, I think my tool shed is still there but I don\u2019t
+      know if it\u2019s locked or not."
+    characterImage: {fileID: 0}
+    voiceClip: {fileID: 0}
+  - speakerName: Clara
+    text: "I\u2019ll figure it out. Thanks Dad."
+    characterImage: {fileID: 0}
+    voiceClip: {fileID: 0}
