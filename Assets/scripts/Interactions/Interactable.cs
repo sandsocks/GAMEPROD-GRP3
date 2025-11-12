@@ -51,6 +51,12 @@ public class Interactable : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip interactionSFX;
 
+    [Header("Quest Integration")]
+    public bool triggerQuestOnInteraction = false;
+    public bool triggerQuestOnEnter = false;
+    public string questToStart;
+    public string questToComplete;
+
     private bool playerInRange = false;
     private bool dialogueActive = false;
     private bool dialogueFinished = false;
@@ -65,32 +71,34 @@ public class Interactable : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            playerInRange = true;
-            promptDismissed = false;
+        if (!other.CompareTag("Player")) return;
 
-            if (promptText != null && (!dialogueFinished || repeatable))
-            {
-                promptText.text = promptMessage;
-                StartCoroutine(FadeText(promptText, 0, 1, promptFadeInDuration));
-            }
+        playerInRange = true;
+        promptDismissed = false;
+
+        // 🎯 Auto quest trigger
+        if (triggerQuestOnEnter)
+            TriggerQuest();
+
+        if (promptText != null && (!dialogueFinished || repeatable))
+        {
+            promptText.text = promptMessage;
+            StartCoroutine(FadeText(promptText, 0, 1, promptFadeInDuration));
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            playerInRange = false;
-            promptDismissed = false;
+        if (!other.CompareTag("Player")) return;
 
-            if (promptText != null)
-                StartCoroutine(FadeText(promptText, promptText.alpha, 0, promptFadeOutDuration));
+        playerInRange = false;
+        promptDismissed = false;
 
-            if (interactionType == InteractionType.Note && noteOpen)
-                CloseNote();
-        }
+        if (promptText != null)
+            StartCoroutine(FadeText(promptText, promptText.alpha, 0, promptFadeOutDuration));
+
+        if (interactionType == InteractionType.Note && noteOpen)
+            CloseNote();
     }
 
     private void Update()
@@ -112,14 +120,11 @@ public class Interactable : MonoBehaviour
 
     private void TryInteraction()
     {
-        // Check required item
+        // Item check
         if (!string.IsNullOrEmpty(requiredItem) && !InventoryManager.Instance.HasItem(requiredItem))
         {
-            // Show temporary message using DialogueManager
             if (DialogueManager.Instance != null)
-            {
                 DialogueManager.Instance.ShowTemporaryMessage(missingItemMessage);
-            }
             return;
         }
 
@@ -147,6 +152,10 @@ public class Interactable : MonoBehaviour
                 }
                 break;
         }
+
+        // 🎯 Quest trigger (after interaction)
+        if (triggerQuestOnInteraction)
+            TriggerQuest();
     }
 
     private void TriggerExtras()
@@ -162,6 +171,17 @@ public class Interactable : MonoBehaviour
             if (source != null)
                 source.PlayOneShot(interactionSFX);
         }
+    }
+
+    private void TriggerQuest()
+    {
+        if (QuestManager.Instance == null) return;
+
+        if (!string.IsNullOrEmpty(questToStart))
+            QuestManager.Instance.StartQuest(questToStart);
+
+        if (!string.IsNullOrEmpty(questToComplete))
+            QuestManager.Instance.CompleteQuest(questToComplete);
     }
 
     private void HandlePromptOnly()
@@ -213,10 +233,8 @@ public class Interactable : MonoBehaviour
         if (promptText != null)
             StartCoroutine(FadeText(promptText, promptText.alpha, 0, promptFadeOutDuration));
 
-        // Use DialogueManager to play dialogue
         DialogueManager.Instance.StartDialogue(dialogueData);
 
-        // Wait until dialogue finishes
         while (DialogueManager.Instance.IsDialogueRunning)
             yield return null;
 

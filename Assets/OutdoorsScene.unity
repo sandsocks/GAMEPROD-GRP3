@@ -1215,6 +1215,7 @@ GameObject:
   - component: {fileID: 118250875}
   - component: {fileID: 118250879}
   - component: {fileID: 118250880}
+  - component: {fileID: 118250881}
   m_Layer: 0
   m_Name: dialogue trigger test
   m_TagString: Untagged
@@ -1425,6 +1426,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueOnStep
   dialogueData: {fileID: 11400000, guid: 3c0ad1a8f97b3db4495775d1b3b26aba, type: 2}
   triggerOnce: 1
+--- !u!114 &118250881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 118250873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192edc334b91e2a4d9012128a71e3b63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::questexample
+  questToStart: 01
+  questToComplete: 01
 --- !u!1 &143440296 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5122029482452007195, guid: 86e29605cb887d4489df79b439c5d9a4, type: 3}
@@ -16895,6 +16910,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1948711190}
   - component: {fileID: 1948711189}
+  - component: {fileID: 1948711191}
   m_Layer: 0
   m_Name: Dialogue manager
   m_TagString: Untagged
@@ -16936,6 +16952,32 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1948711191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948711188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 297d4fe8cbf7c8f4787e8d18afefed36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::QuestManager
+  allQuests:
+  - questId: 
+    questName: 
+    description: 
+    isActive: 0
+    isCompleted: 0
+    nextQuestIds: []
+  - questId: 
+    questName: 
+    description: 
+    isActive: 0
+    isCompleted: 0
+    nextQuestIds: []
+  activeQuestsText: {fileID: 0}
 --- !u!4 &1950439528 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7145519287754943667, guid: ea2e404c4f4ed1d41b78144c30acec63, type: 3}
