@@ -1484,6 +1484,10 @@ MonoBehaviour:
   playSFX: 0
   audioSource: {fileID: 0}
   interactionSFX: {fileID: 0}
+  triggerQuestOnInteraction: 0
+  triggerQuestOnEnter: 0
+  questToStart: 
+  questToComplete: 
 --- !u!4 &143440301 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5503057903223923617, guid: 86e29605cb887d4489df79b439c5d9a4, type: 3}
@@ -3209,8 +3213,8 @@ Transform:
   - {fileID: 632684721}
   - {fileID: 696927071}
   - {fileID: 17619247}
-  - {fileID: 1475209248}
   - {fileID: 621393827}
+  - {fileID: 1199465377}
   m_Father: {fileID: 20366241}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &391461972 stripped
@@ -5076,6 +5080,10 @@ MonoBehaviour:
   playSFX: 0
   audioSource: {fileID: 0}
   interactionSFX: {fileID: 0}
+  triggerQuestOnInteraction: 0
+  triggerQuestOnEnter: 0
+  questToStart: 
+  questToComplete: 
 --- !u!1 &623533201 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5604897844086618865, guid: 1f4d8997f4d73564c8c06c403a646fb2, type: 3}
@@ -5256,6 +5264,10 @@ MonoBehaviour:
   playSFX: 0
   audioSource: {fileID: 0}
   interactionSFX: {fileID: 0}
+  triggerQuestOnInteraction: 0
+  triggerQuestOnEnter: 0
+  questToStart: 
+  questToComplete: 
 --- !u!1001 &638659475
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5865,6 +5877,10 @@ MonoBehaviour:
   playSFX: 0
   audioSource: {fileID: 0}
   interactionSFX: {fileID: 0}
+  triggerQuestOnInteraction: 0
+  triggerQuestOnEnter: 0
+  questToStart: 
+  questToComplete: 
 --- !u!135 &696927073
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -7933,6 +7949,10 @@ MonoBehaviour:
   playSFX: 0
   audioSource: {fileID: 0}
   interactionSFX: {fileID: 0}
+  triggerQuestOnInteraction: 0
+  triggerQuestOnEnter: 0
+  questToStart: 
+  questToComplete: 
 --- !u!1 &963209877 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6851297184777207476, guid: 1f4d8997f4d73564c8c06c403a646fb2, type: 3}
@@ -8847,6 +8867,10 @@ MonoBehaviour:
   playSFX: 0
   audioSource: {fileID: 0}
   interactionSFX: {fileID: 0}
+  triggerQuestOnInteraction: 0
+  triggerQuestOnEnter: 0
+  questToStart: 
+  questToComplete: 
 --- !u!4 &1018064106 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: cbbf6055d8ae17144a584a2e181737e5, type: 3}
@@ -9589,7 +9613,7 @@ MonoBehaviour:
   requireKeyPress: 1
   promptFadeInDuration: 0.5
   promptFadeOutDuration: 0.5
-  dialogueData: {fileID: 0}
+  dialogueData: {fileID: 11400000, guid: 637cc8d0ee4365e4e81f6ba22f1b0845, type: 2}
   repeatable: 1
   removeAfterInteraction: 0
   requiredItem: 
@@ -9612,6 +9636,10 @@ MonoBehaviour:
   playSFX: 0
   audioSource: {fileID: 0}
   interactionSFX: {fileID: 0}
+  triggerQuestOnInteraction: 0
+  triggerQuestOnEnter: 0
+  questToStart: 
+  questToComplete: 
 --- !u!1 &1090388846
 GameObject:
   m_ObjectHideFlags: 0
@@ -10455,6 +10483,80 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!1001 &1199465376
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 388647914}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 6d05639f34faa0041842427ff31d8603, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 11.612
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6d05639f34faa0041842427ff31d8603, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 11.612
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6d05639f34faa0041842427ff31d8603, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 11.6119995
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6d05639f34faa0041842427ff31d8603, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.2120008
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6d05639f34faa0041842427ff31d8603, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.116000175
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6d05639f34faa0041842427ff31d8603, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.6759987
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6d05639f34faa0041842427ff31d8603, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.91054
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6d05639f34faa0041842427ff31d8603, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.17958605
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6d05639f34faa0041842427ff31d8603, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.10101586
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6d05639f34faa0041842427ff31d8603, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.35841554
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6d05639f34faa0041842427ff31d8603, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -165.248
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6d05639f34faa0041842427ff31d8603, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 198.866
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6d05639f34faa0041842427ff31d8603, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 134.564
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6d05639f34faa0041842427ff31d8603, type: 3}
+      propertyPath: m_Name
+      value: Mitt
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6d05639f34faa0041842427ff31d8603, type: 3}
+--- !u!4 &1199465377 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6d05639f34faa0041842427ff31d8603, type: 3}
+  m_PrefabInstance: {fileID: 1199465376}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1204887178
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11396,6 +11498,10 @@ MonoBehaviour:
   playSFX: 0
   audioSource: {fileID: 0}
   interactionSFX: {fileID: 0}
+  triggerQuestOnInteraction: 0
+  triggerQuestOnEnter: 0
+  questToStart: 
+  questToComplete: 
 --- !u!135 &1302265701
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -12951,114 +13057,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4138052842913210707, guid: 9b5dc512ec347e34eaaae1f9cf497537, type: 3}
   m_PrefabInstance: {fileID: 1428170194}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1475209247
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 388647914}
-    m_Modifications:
-    - target: {fileID: 8479191237077330252, guid: f296379057ff5cd429c9d0cd2c03eb7b, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -15.533999
-      objectReference: {fileID: 0}
-    - target: {fileID: 8479191237077330252, guid: f296379057ff5cd429c9d0cd2c03eb7b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.03763604
-      objectReference: {fileID: 0}
-    - target: {fileID: 8479191237077330252, guid: f296379057ff5cd429c9d0cd2c03eb7b, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.01499939
-      objectReference: {fileID: 0}
-    - target: {fileID: 8479191237077330252, guid: f296379057ff5cd429c9d0cd2c03eb7b, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8479191237077330252, guid: f296379057ff5cd429c9d0cd2c03eb7b, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8479191237077330252, guid: f296379057ff5cd429c9d0cd2c03eb7b, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8479191237077330252, guid: f296379057ff5cd429c9d0cd2c03eb7b, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8479191237077330252, guid: f296379057ff5cd429c9d0cd2c03eb7b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8479191237077330252, guid: f296379057ff5cd429c9d0cd2c03eb7b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8479191237077330252, guid: f296379057ff5cd429c9d0cd2c03eb7b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9144544947262272502, guid: f296379057ff5cd429c9d0cd2c03eb7b, type: 3}
-      propertyPath: m_Name
-      value: Soccer Ball
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 9144544947262272502, guid: f296379057ff5cd429c9d0cd2c03eb7b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1475209250}
-  m_SourcePrefab: {fileID: 100100000, guid: f296379057ff5cd429c9d0cd2c03eb7b, type: 3}
---- !u!4 &1475209248 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8479191237077330252, guid: f296379057ff5cd429c9d0cd2c03eb7b, type: 3}
-  m_PrefabInstance: {fileID: 1475209247}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1475209249 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9144544947262272502, guid: f296379057ff5cd429c9d0cd2c03eb7b, type: 3}
-  m_PrefabInstance: {fileID: 1475209247}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1475209250
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1475209249}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e8b9e2ba6c7b6d488744938031021da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Interactable
-  interactionType: 1
-  promptText: {fileID: 0}
-  notePanel: {fileID: 0}
-  noteTextUI: {fileID: 0}
-  promptMessage: Press E to interact
-  missingItemMessage: You need a specific item!
-  interactKey: 101
-  requireKeyPress: 1
-  promptFadeInDuration: 0.5
-  promptFadeOutDuration: 0.5
-  dialogueData: {fileID: 11400000, guid: 3049fa918d4f9aa4c8ed3cc16fef9355, type: 2}
-  repeatable: 1
-  removeAfterInteraction: 0
-  requiredItem: 
-  givesItem: 0
-  itemName: New Item
-  itemDescription: Item description goes here.
-  itemIcon: {fileID: 0}
-  noteText: This is the note text.
-  closeNoteKey: 101
-  triggerAnimation: 0
-  animator: {fileID: 0}
-  animationTriggerName: Activate
-  playSFX: 0
-  audioSource: {fileID: 0}
-  interactionSFX: {fileID: 0}
 --- !u!1 &1479844865 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6477405744068065767, guid: 1f4d8997f4d73564c8c06c403a646fb2, type: 3}
@@ -14801,6 +14799,10 @@ MonoBehaviour:
   playSFX: 0
   audioSource: {fileID: 0}
   interactionSFX: {fileID: 0}
+  triggerQuestOnInteraction: 0
+  triggerQuestOnEnter: 0
+  questToStart: 
+  questToComplete: 
 --- !u!4 &1680745573 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3859430444010454319, guid: 97410b42f813e3d429db68b74b5b280c, type: 3}
@@ -16370,6 +16372,76 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9038905840851199409, guid: 2586bd2aaf6e4344785fd6e0f7f214bc, type: 3}
   m_PrefabInstance: {fileID: 1265120531}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1846570659
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1846570661}
+  - component: {fileID: 1846570660}
+  m_Layer: 0
+  m_Name: Quest Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1846570660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1846570659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 297d4fe8cbf7c8f4787e8d18afefed36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::QuestManager
+  allQuests:
+  - questId: door_riddle
+    questName: 
+    description: Find the house key and unlock the front door
+    isActive: 1
+    isCompleted: 0
+    nextQuestIds: []
+  - questId: tree_riddle
+    questName: 
+    description: Find Dad's shovel
+    isActive: 1
+    isCompleted: 0
+    nextQuestIds: []
+  - questId: shed_riddle
+    questName: Shed Lock
+    description: Find the code for the combination lock
+    isActive: 1
+    isCompleted: 0
+    nextQuestIds: []
+  - questId: clara_items
+    questName: Clara's Items
+    description: 'Find the the following: baseball mitt, doll, notebook'
+    isActive: 1
+    isCompleted: 0
+    nextQuestIds: []
+  activeQuestsText: {fileID: 0}
+--- !u!4 &1846570661
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1846570659}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 14.08766, y: -0.27321, z: -15.32073}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1859912362
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16496,6 +16568,7 @@ GameObject:
   - component: {fileID: 1866244816}
   - component: {fileID: 1866244815}
   - component: {fileID: 1866244814}
+  - component: {fileID: 1866244818}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -16596,6 +16669,48 @@ Transform:
   m_Children: []
   m_Father: {fileID: 20366241}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1866244818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866244813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e8b9e2ba6c7b6d488744938031021da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactable
+  interactionType: 1
+  promptText: {fileID: 0}
+  notePanel: {fileID: 0}
+  noteTextUI: {fileID: 0}
+  promptMessage: Press E to interact
+  missingItemMessage: You need a specific item!
+  interactKey: 101
+  requireKeyPress: 1
+  promptFadeInDuration: 0.5
+  promptFadeOutDuration: 0.5
+  dialogueData: {fileID: 11400000, guid: 3049fa918d4f9aa4c8ed3cc16fef9355, type: 2}
+  repeatable: 1
+  removeAfterInteraction: 0
+  requiredItem: 
+  givesItem: 0
+  itemName: New Item
+  itemDescription: Item description goes here.
+  itemIcon: {fileID: 0}
+  noteText: This is the note text.
+  closeNoteKey: 101
+  triggerAnimation: 0
+  animator: {fileID: 0}
+  animationTriggerName: Activate
+  playSFX: 0
+  audioSource: {fileID: 0}
+  interactionSFX: {fileID: 0}
+  triggerQuestOnInteraction: 0
+  triggerQuestOnEnter: 0
+  questToStart: 
+  questToComplete: 
 --- !u!1001 &1870186908
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18279,6 +18394,10 @@ MonoBehaviour:
   playSFX: 0
   audioSource: {fileID: 0}
   interactionSFX: {fileID: 0}
+  triggerQuestOnInteraction: 0
+  triggerQuestOnEnter: 0
+  questToStart: 
+  questToComplete: 
 --- !u!135 &2080491179
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -19611,3 +19730,4 @@ SceneRoots:
   - {fileID: 1812825207}
   - {fileID: 867872503}
   - {fileID: 1948711190}
+  - {fileID: 1846570661}
