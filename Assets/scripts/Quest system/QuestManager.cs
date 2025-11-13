@@ -11,7 +11,7 @@ public class QuestManager : MonoBehaviour
     public List<Quest> allQuests = new List<Quest>();
 
     [Header("UI")]
-    public TextMeshProUGUI activeQuestsText; // assign in Inspector
+    public TextMeshProUGUI activeQuestsText;
 
     private void Awake()
     {
@@ -29,7 +29,7 @@ public class QuestManager : MonoBehaviour
         UpdateQuestUI();
     }
 
-    // 🟢 Start a quest
+    // 🟢 Start quest
     public void StartQuest(string questId)
     {
         Quest quest = GetQuestById(questId);
@@ -45,40 +45,52 @@ public class QuestManager : MonoBehaviour
             return;
         }
 
-        if (quest.isActive)
-        {
-            Debug.Log($"Quest '{quest.questName}' is already active.");
-            return;
-        }
-
         quest.isActive = true;
         Debug.Log($"Started quest: {quest.questName}");
         UpdateQuestUI();
     }
 
-    // 🟡 Complete quest
-    public void CompleteQuest(string questId)
+    // 🟠 Add progress to an objective
+    public void AddObjectiveProgress(string questId, string objectiveId, int amount = 1)
     {
         Quest quest = GetQuestById(questId);
-        if (quest == null)
+        if (quest == null || !quest.isActive)
         {
-            Debug.LogWarning($"Quest '{questId}' not found!");
+            Debug.LogWarning($"Quest '{questId}' is not active or doesn't exist!");
             return;
         }
 
-        if (!quest.isActive)
+        QuestObjective objective = quest.objectives.Find(o => o.objectiveId == objectiveId);
+        if (objective == null)
         {
-            Debug.LogWarning($"Quest '{quest.questName}' hasn't been started.");
+            Debug.LogWarning($"Objective '{objectiveId}' not found in quest '{questId}'.");
             return;
         }
+
+        objective.AddProgress(amount);
+        Debug.Log($"Objective progress: {objective.description} ({objective.currentCount}/{objective.targetCount})");
+
+        if (quest.AreAllObjectivesCompleted())
+        {
+            CompleteQuest(questId);
+        }
+
+        UpdateQuestUI();
+    }
+
+    // 🟡 Complete a quest (only called internally when all objectives are done)
+    public void CompleteQuest(string questId)
+    {
+        Quest quest = GetQuestById(questId);
+        if (quest == null) return;
 
         quest.isActive = false;
         quest.isCompleted = true;
 
-        Debug.Log($"Completed quest: {quest.questName}");
+        Debug.Log($"Quest completed: {quest.questName}");
 
-        // 🔗 Unlock next quests
-        foreach (string nextId in quest.nextQuestIds)
+        // Start next quest(s)
+        foreach (var nextId in quest.nextQuestIds)
         {
             Quest next = GetQuestById(nextId);
             if (next != null && !next.isCompleted)
@@ -90,39 +102,36 @@ public class QuestManager : MonoBehaviour
         UpdateQuestUI();
     }
 
-    // 🔍 Get a quest by ID
+    // 🔍 Get quest by ID
     public Quest GetQuestById(string questId)
     {
         return allQuests.Find(q => q.questId == questId);
     }
 
-    // 🧾 Update the on-screen UI
+    // 🧾 Update UI text
     private void UpdateQuestUI()
     {
         if (activeQuestsText == null) return;
 
         StringBuilder sb = new StringBuilder();
-
         sb.AppendLine("<b><size=120%>Active Quests</size></b>\n");
 
         foreach (var quest in allQuests)
         {
-            if (quest.isActive)
+            if (!quest.isActive) continue;
+
+            sb.AppendLine($"<b>{quest.questName}</b>");
+            sb.AppendLine($"{quest.description}");
+
+            foreach (var obj in quest.objectives)
             {
-                sb.AppendLine($"• <b>{quest.questName}</b>");
-                sb.AppendLine($"   {quest.description}\n");
+                string checkbox = obj.isCompleted ? "☑" : "☐";
+                sb.AppendLine($"   {checkbox} {obj.description} ({obj.currentCount}/{obj.targetCount})");
             }
+
+            sb.AppendLine();
         }
 
         activeQuestsText.text = sb.ToString();
-    }
-
-    // Optional helper for debugging
-    public void PrintAllQuests()
-    {
-        foreach (var quest in allQuests)
-        {
-            Debug.Log($"{quest.questName} | Active: {quest.isActive} | Completed: {quest.isCompleted}");
-        }
     }
 }

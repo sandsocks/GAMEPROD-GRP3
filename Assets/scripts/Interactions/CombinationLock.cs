@@ -14,18 +14,17 @@ public class CombinationLock : MonoBehaviour
     public Transform cameraOriginalPoint;
     public float cameraMoveSpeed = 5f;
     public float cameraRotateSpeed = 5f;
-    public float interactDistance = 3f;
     public KeyCode interactKey = KeyCode.E;
 
     [Header("Reward Settings")]
-    public bool giveRewardItem = true;
-    public Sprite rewardItemIcon;
-    public string rewardItemName = "Vault Key";
-    [TextArea(2, 4)] public string rewardItemDescription = "A heavy metal key used to open the vault door.";
+    public bool givesItem = false;
+    public Sprite rewardIcon;
+    public string rewardItemName;
+    [TextArea] public string rewardDescription;
 
-    [Header("Optional Animation")]
-    public Animator unlockAnimator;
-    public string unlockTriggerName = "Unlock";
+    [Header("Quest Integration")]
+    public string questToStart;
+    public string questToComplete;
 
     private bool isInteracting = false;
     private bool playerInTrigger = false;
@@ -34,7 +33,6 @@ public class CombinationLock : MonoBehaviour
 
     private Transform player;
     private MonoBehaviour playerController;
-
     private Quaternion[] initialRotations;
 
     void Start()
@@ -47,14 +45,12 @@ public class CombinationLock : MonoBehaviour
         for (int i = 0; i < wheels.Length; i++)
         {
             if (wheels[i] == null) continue;
-
-           
             currentValues[i] = Mathf.Clamp(currentValues[i], 0, 7);
             initialRotations[i] = wheels[i].localRotation *
                                   Quaternion.Inverse(Quaternion.Euler(currentValues[i] * rotationPerStep, 0f, 0f));
         }
 
-       
+        // Prevent camera shake at start
         if (interactionCamera != null && cameraOriginalPoint != null)
         {
             interactionCamera.transform.position = cameraOriginalPoint.position;
@@ -68,7 +64,6 @@ public class CombinationLock : MonoBehaviour
     {
         if (interactionCamera == null || player == null) return;
 
-   
         if (playerInTrigger && Input.GetKeyDown(interactKey))
         {
             if (!isInteracting)
@@ -171,6 +166,8 @@ public class CombinationLock : MonoBehaviour
 
     void IncrementWheel(int index)
     {
+        if (isUnlocked) return; // prevent turning after unlock
+
         currentValues[index] = (currentValues[index] + 1) % 8;
         ApplyWheelRotation(index);
 
@@ -188,33 +185,35 @@ public class CombinationLock : MonoBehaviour
 
     void CheckCombination()
     {
-        if (isUnlocked) return;
-
         for (int i = 0; i < wheels.Length; i++)
         {
             if (currentValues[i] != correctCombination[i])
                 return;
         }
 
-        Debug.Log("✅ Correct Combination! Lock opened!");
+        if (isUnlocked) return;
+
         isUnlocked = true;
+        Debug.Log("✅ Correct Combination! Lock opened!");
 
-       
-        if (giveRewardItem && InventoryManager.Instance != null)
+        // === Trigger Quest ===
+        if (!string.IsNullOrEmpty(questToStart))
+            QuestManager.Instance.StartQuest(questToStart);
+
+        if (!string.IsNullOrEmpty(questToComplete))
+            QuestManager.Instance.CompleteQuest(questToComplete);
+
+        // === Give Reward Item ===
+        if (givesItem && InventoryManager.Instance != null)
         {
-            InventoryManager.Instance.AddItem(rewardItemIcon, rewardItemName, rewardItemDescription);
-            Debug.Log($"🎁 Player received: {rewardItemName}");
+            InventoryManager.Instance.AddItem(rewardIcon, rewardItemName, rewardDescription);
+            Debug.Log($"🎁 Player received item: {rewardItemName}");
         }
 
-    
-        if (unlockAnimator != null && !string.IsNullOrEmpty(unlockTriggerName))
-        {
-            unlockAnimator.SetTrigger(unlockTriggerName);
-            Debug.Log("🔓 Unlock animation triggered!");
-        }
-
-       
-        StopInteraction();
+        // Optional: play animation or sound here
+        Animator anim = GetComponent<Animator>();
+        if (anim != null)
+            anim.SetTrigger("Unlock");
     }
 
     // === Trigger Detection ===

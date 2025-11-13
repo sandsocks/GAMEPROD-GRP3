@@ -4,22 +4,26 @@ using System.Collections.Generic;
 [System.Serializable]
 public class Quest
 {
-    public string questId;                   // Unique ID
+    public string questId;
     public string questName;
     [TextArea] public string description;
 
     public bool isActive;
     public bool isCompleted;
 
+    [Header("Objectives")]
+    public List<QuestObjective> objectives = new List<QuestObjective>();
+
     [Header("Next Quest(s) after completion")]
     public List<string> nextQuestIds = new List<string>();
 
-    public Quest(string id, string name, string desc)
+    public bool AreAllObjectivesCompleted()
     {
-        questId = id;
-        questName = name;
-        description = desc;
-        isActive = false;
-        isCompleted = false;
+        foreach (var obj in objectives)
+        {
+            if (!obj.isCompleted)
+                return false;
+        }
+        return true;
     }
 }

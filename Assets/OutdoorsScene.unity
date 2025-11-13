@@ -8778,14 +8778,13 @@ MonoBehaviour:
   cameraOriginalPoint: {fileID: 752737350}
   cameraMoveSpeed: 4
   cameraRotateSpeed: 5
-  interactDistance: 3
   interactKey: 101
-  giveRewardItem: 1
-  rewardItemIcon: {fileID: 0}
+  givesItem: 0
+  rewardIcon: {fileID: 0}
   rewardItemName: Shovel
-  rewardItemDescription: shovel
-  unlockAnimator: {fileID: 0}
-  unlockTriggerName: Unlock
+  rewardDescription: 
+  questToStart: 
+  questToComplete: 
 --- !u!64 &1018064103
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -16407,24 +16406,39 @@ MonoBehaviour:
     description: Find the house key and unlock the front door
     isActive: 1
     isCompleted: 0
-    nextQuestIds: []
+    objectives:
+    - objectiveId: 
+      description: 
+      currentCount: 0
+      targetCount: 0
+      isCompleted: 0
+    - objectiveId: 
+      description: 
+      currentCount: 0
+      targetCount: 0
+      isCompleted: 0
+    nextQuestIds:
+    - 
   - questId: tree_riddle
     questName: 
     description: Find Dad's shovel
     isActive: 1
     isCompleted: 0
+    objectives: []
     nextQuestIds: []
   - questId: shed_riddle
     questName: Shed Lock
     description: Find the code for the combination lock
     isActive: 1
     isCompleted: 0
+    objectives: []
     nextQuestIds: []
   - questId: clara_items
     questName: Clara's Items
     description: 'Find the the following: baseball mitt, doll, notebook'
     isActive: 1
     isCompleted: 0
+    objectives: []
     nextQuestIds: []
   activeQuestsText: {fileID: 0}
 --- !u!4 &1846570661
@@ -17085,12 +17099,14 @@ MonoBehaviour:
     description: 
     isActive: 0
     isCompleted: 0
+    objectives: []
     nextQuestIds: []
   - questId: 
     questName: 
     description: 
     isActive: 0
     isCompleted: 0
+    objectives: []
     nextQuestIds: []
   activeQuestsText: {fileID: 0}
 --- !u!4 &1950439528 stripped
