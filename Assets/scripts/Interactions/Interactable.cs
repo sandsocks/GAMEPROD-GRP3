@@ -23,7 +23,7 @@ public class Interactable : MonoBehaviour
     public float promptFadeOutDuration = 0.5f;
 
     [Header("Dialogue Settings")]
-    public DialogueData dialogueData; // 🎯 ScriptableObject assigned here
+    public DialogueData dialogueData;
     public bool repeatable = true;
 
     [Header("Output Settings")]
@@ -35,7 +35,7 @@ public class Interactable : MonoBehaviour
     [Header("Gives Item On Interaction")]
     public bool givesItem = false;
     public string itemName = "New Item";
-    [TextArea] public string itemDescription = "Item description goes here.";
+    public string itemDescription = "Item description goes here.";
     public Sprite itemIcon;
 
     [Header("Note Interaction")]
@@ -57,6 +57,12 @@ public class Interactable : MonoBehaviour
     public string questToStart;
     public string questToComplete;
 
+    [Header("Quest Objective Update")]
+    public bool updateQuestObjective = false;
+    public string objectiveQuestID;
+    public string objectiveID;
+    public int objectiveAmount = 1;
+
     private bool playerInRange = false;
     private bool dialogueActive = false;
     private bool dialogueFinished = false;
@@ -76,7 +82,6 @@ public class Interactable : MonoBehaviour
         playerInRange = true;
         promptDismissed = false;
 
-        // 🎯 Auto quest trigger
         if (triggerQuestOnEnter)
             TriggerQuest();
 
@@ -120,7 +125,6 @@ public class Interactable : MonoBehaviour
 
     private void TryInteraction()
     {
-        // Item check
         if (!string.IsNullOrEmpty(requiredItem) && !InventoryManager.Instance.HasItem(requiredItem))
         {
             if (DialogueManager.Instance != null)
@@ -153,18 +157,18 @@ public class Interactable : MonoBehaviour
                 break;
         }
 
-        // 🎯 Quest trigger (after interaction)
         if (triggerQuestOnInteraction)
             TriggerQuest();
+
+        if (updateQuestObjective)
+            TriggerQuestObjective();
     }
 
     private void TriggerExtras()
     {
-        // Animation
         if (triggerAnimation && animator != null && !string.IsNullOrEmpty(animationTriggerName))
             animator.SetTrigger(animationTriggerName);
 
-        // SFX
         if (playSFX && interactionSFX != null)
         {
             AudioSource source = audioSource != null ? audioSource : DialogueManager.Instance?.voiceSource;
@@ -182,6 +186,17 @@ public class Interactable : MonoBehaviour
 
         if (!string.IsNullOrEmpty(questToComplete))
             QuestManager.Instance.CompleteQuest(questToComplete);
+    }
+
+    private void TriggerQuestObjective()
+    {
+        if (QuestManager.Instance == null) return;
+
+        if (!string.IsNullOrEmpty(objectiveQuestID) &&
+            !string.IsNullOrEmpty(objectiveID))
+        {
+            QuestManager.Instance.AddObjectiveProgress(objectiveQuestID, objectiveID, objectiveAmount);
+        }
     }
 
     private void HandlePromptOnly()

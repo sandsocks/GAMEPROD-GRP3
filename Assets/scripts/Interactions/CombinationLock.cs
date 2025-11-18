@@ -4,9 +4,9 @@ public class CombinationLock : MonoBehaviour
 {
     [Header("Lock Wheels")]
     public Transform[] wheels;
-    [Range(0, 7)] public int[] currentValues = { 7, 7, 7 }; // Default logical = 7
+    [Range(0, 7)] public int[] currentValues = { 7, 7, 7 };
     public int[] correctCombination = { 1, 2, 3 };
-    public float rotationPerStep = 45f; // 360 / 8 = 45° per step
+    public float rotationPerStep = 45f;
 
     [Header("Interaction Settings")]
     public Camera interactionCamera;
@@ -22,9 +22,23 @@ public class CombinationLock : MonoBehaviour
     public string rewardItemName;
     [TextArea] public string rewardDescription;
 
+    [Header("Reward Animation")]
+    public bool playsUnlockAnimation = false;
+    public Animation unlockAnimationComponent;
+    public string unlockAnimationClipName;
+
+    [Header("Door Animator")]
+    public Animator doorAnimator;                     // <-- NEW
+    public string doorBoolParameter = "OpenDoor";     // <-- NEW bool parameter
+
     [Header("Quest Integration")]
     public string questToStart;
     public string questToComplete;
+    public string questObjectiveQuestId;
+    public string questObjectiveId;
+
+    [Header("Lock State")]
+    public bool openDoor = false; // internal bool
 
     private bool isInteracting = false;
     private bool playerInTrigger = false;
@@ -46,25 +60,26 @@ public class CombinationLock : MonoBehaviour
         {
             if (wheels[i] == null) continue;
             currentValues[i] = Mathf.Clamp(currentValues[i], 0, 7);
-            initialRotations[i] = wheels[i].localRotation *
-                                  Quaternion.Inverse(Quaternion.Euler(currentValues[i] * rotationPerStep, 0f, 0f));
+
+            initialRotations[i] =
+                wheels[i].localRotation *
+                Quaternion.Inverse(
+                    Quaternion.Euler(currentValues[i] * rotationPerStep, 0f, 0f)
+                );
         }
 
-        // Prevent camera shake at start
         if (interactionCamera != null && cameraOriginalPoint != null)
         {
             interactionCamera.transform.position = cameraOriginalPoint.position;
             interactionCamera.transform.rotation = cameraOriginalPoint.rotation;
         }
-
-        Debug.Log("Combination Lock initialized.");
     }
 
     void Update()
     {
         if (interactionCamera == null || player == null) return;
 
-        if (playerInTrigger && Input.GetKeyDown(interactKey))
+        if (playerInTrigger && Input.GetKeyDown(interactKey) && !isUnlocked)
         {
             if (!isInteracting)
                 StartInteraction();
@@ -94,8 +109,6 @@ public class CombinationLock : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-
-        Debug.Log("🟢 Player is now interacting with the lock.");
     }
 
     void StopInteraction()
@@ -107,8 +120,6 @@ public class CombinationLock : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-
-        Debug.Log("🔴 Player stopped interacting with the lock.");
     }
 
     void MoveCameraToFocus()
@@ -118,14 +129,12 @@ public class CombinationLock : MonoBehaviour
         interactionCamera.transform.position = Vector3.Lerp(
             interactionCamera.transform.position,
             cameraFocusPoint.position,
-            Time.deltaTime * cameraMoveSpeed
-        );
+            Time.deltaTime * cameraMoveSpeed);
 
         interactionCamera.transform.rotation = Quaternion.Slerp(
             interactionCamera.transform.rotation,
             cameraFocusPoint.rotation,
-            Time.deltaTime * cameraRotateSpeed
-        );
+            Time.deltaTime * cameraRotateSpeed);
     }
 
     void ReturnCameraToOriginal()
@@ -135,14 +144,12 @@ public class CombinationLock : MonoBehaviour
         interactionCamera.transform.position = Vector3.Lerp(
             interactionCamera.transform.position,
             cameraOriginalPoint.position,
-            Time.deltaTime * cameraMoveSpeed
-        );
+            Time.deltaTime * cameraMoveSpeed);
 
         interactionCamera.transform.rotation = Quaternion.Slerp(
             interactionCamera.transform.rotation,
             cameraOriginalPoint.rotation,
-            Time.deltaTime * cameraRotateSpeed
-        );
+            Time.deltaTime * cameraRotateSpeed);
     }
 
     void HandleWheelClick()
@@ -150,6 +157,7 @@ public class CombinationLock : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = interactionCamera.ScreenPointToRay(Input.mousePosition);
+
             if (Physics.Raycast(ray, out RaycastHit hit, 5f))
             {
                 for (int i = 0; i < wheels.Length; i++)
@@ -157,7 +165,7 @@ public class CombinationLock : MonoBehaviour
                     if (hit.transform == wheels[i])
                     {
                         IncrementWheel(i);
-                        break;
+                        return;
                     }
                 }
             }
@@ -166,12 +174,10 @@ public class CombinationLock : MonoBehaviour
 
     void IncrementWheel(int index)
     {
-        if (isUnlocked) return; // prevent turning after unlock
+        if (isUnlocked) return;
 
         currentValues[index] = (currentValues[index] + 1) % 8;
         ApplyWheelRotation(index);
-
-        Debug.Log($"Wheel {index + 1} → {currentValues[index]}");
         CheckCombination();
     }
 
@@ -191,32 +197,56 @@ public class CombinationLock : MonoBehaviour
                 return;
         }
 
+        Unlock();
+    }
+
+    void Unlock()
+    {
         if (isUnlocked) return;
-
         isUnlocked = true;
-        Debug.Log("✅ Correct Combination! Lock opened!");
 
-        // === Trigger Quest ===
+        openDoor = true; // internal state
+
+        StopInteraction();
+        hasInteractedOnce = true;
+
+        // QUEST START / COMPLETE
         if (!string.IsNullOrEmpty(questToStart))
             QuestManager.Instance.StartQuest(questToStart);
 
         if (!string.IsNullOrEmpty(questToComplete))
             QuestManager.Instance.CompleteQuest(questToComplete);
 
-        // === Give Reward Item ===
+        if (!string.IsNullOrEmpty(questObjectiveQuestId) &&
+            !string.IsNullOrEmpty(questObjectiveId))
+        {
+            QuestManager.Instance.AddObjectiveProgress(
+                questObjectiveQuestId,
+                questObjectiveId,
+                1);
+        }
+
+        // ITEM REWARD
         if (givesItem && InventoryManager.Instance != null)
         {
             InventoryManager.Instance.AddItem(rewardIcon, rewardItemName, rewardDescription);
-            Debug.Log($"🎁 Player received item: {rewardItemName}");
         }
 
-        // Optional: play animation or sound here
-        Animator anim = GetComponent<Animator>();
-        if (anim != null)
-            anim.SetTrigger("Unlock");
+        // PLAY CLIP ANIMATION
+        if (playsUnlockAnimation && unlockAnimationComponent != null &&
+            !string.IsNullOrEmpty(unlockAnimationClipName))
+        {
+            unlockAnimationComponent.Play(unlockAnimationClipName);
+        }
+
+        // SET ANIMATOR BOOL
+        if (doorAnimator != null && !string.IsNullOrEmpty(doorBoolParameter))
+        {
+            doorAnimator.SetBool(doorBoolParameter, true);
+            Debug.Log("Door Animator bool set TRUE.");
+        }
     }
 
-    // === Trigger Detection ===
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -229,7 +259,6 @@ public class CombinationLock : MonoBehaviour
             playerInTrigger = false;
     }
 
-    // === External Proxy Support ===
     public bool GetIsInteracting() => isInteracting;
 
     public void HandleExternalWheelHit(RaycastHit hit)
