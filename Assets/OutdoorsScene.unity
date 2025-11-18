@@ -16403,42 +16403,57 @@ MonoBehaviour:
   allQuests:
   - questId: door_riddle
     questName: 
-    description: Find the house key and unlock the front door
+    description: Unlock the front door
     isActive: 1
     isCompleted: 0
     objectives:
-    - objectiveId: 
-      description: 
+    - objectiveId: House Key
+      description: 'Find the house key to unlock the front door '
       currentCount: 0
-      targetCount: 0
-      isCompleted: 0
-    - objectiveId: 
-      description: 
-      currentCount: 0
-      targetCount: 0
+      targetCount: 1
       isCompleted: 0
     nextQuestIds:
     - 
-  - questId: tree_riddle
-    questName: 
-    description: Find Dad's shovel
-    isActive: 1
-    isCompleted: 0
-    objectives: []
-    nextQuestIds: []
   - questId: shed_riddle
     questName: Shed Lock
-    description: Find the code for the combination lock
+    description: 
     isActive: 1
     isCompleted: 0
-    objectives: []
-    nextQuestIds: []
+    objectives:
+    - objectiveId: Combination lock
+      description: Unlock the shed door
+      currentCount: 0
+      targetCount: 1
+      isCompleted: 0
+    - objectiveId: Shovel
+      description: Retrieve the shovel from the shed
+      currentCount: 0
+      targetCount: 1
+      isCompleted: 0
+    nextQuestIds:
+    - door_riddle
+    - clara_items
   - questId: clara_items
     questName: Clara's Items
-    description: 'Find the the following: baseball mitt, doll, notebook'
+    description: Find Clara's items
     isActive: 1
     isCompleted: 0
-    objectives: []
+    objectives:
+    - objectiveId: Baseball Mitt
+      description: 
+      currentCount: 0
+      targetCount: 1
+      isCompleted: 0
+    - objectiveId: Doll
+      description: 
+      currentCount: 0
+      targetCount: 1
+      isCompleted: 0
+    - objectiveId: Notebook
+      description: 
+      currentCount: 0
+      targetCount: 1
+      isCompleted: 0
     nextQuestIds: []
   activeQuestsText: {fileID: 0}
 --- !u!4 &1846570661
