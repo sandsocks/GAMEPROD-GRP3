@@ -51,24 +51,37 @@ public class squigglytext: MonoBehaviour
     Vector3[][] GenerateFrames(TMP_Text tmp)
     {
         tmp.ForceMeshUpdate();
+
+        TMP_TextInfo textInfo = tmp.textInfo;
+        if (textInfo.meshInfo.Length == 0)
+            return new Vector3[0][];
+
+        Vector3[] baseVerts = textInfo.meshInfo[0].vertices;
+        if (baseVerts == null || baseVerts.Length == 0)
+            return new Vector3[0][];
+
         Vector3[][] framesArray = new Vector3[frames][];
-        var baseVerts = tmp.mesh.vertices;
 
         for (int f = 0; f < frames; f++)
         {
             var vertsCopy = new Vector3[baseVerts.Length];
+
             for (int i = 0; i < baseVerts.Length; i++)
             {
                 Vector3 offset = new Vector3(
                     Random.Range(-jitter, jitter),
                     Random.Range(-jitter, jitter),
-                    0f);
+                    0f
+                );
                 vertsCopy[i] = baseVerts[i] + offset;
             }
+
             framesArray[f] = vertsCopy;
         }
+
         return framesArray;
     }
+
 
     void Update()
     {

@@ -125,7 +125,7 @@ public class QuestManager : MonoBehaviour
 
             foreach (var obj in quest.objectives)
             {
-                string checkbox = obj.isCompleted ? "☑" : "☐";
+                string checkbox = obj.isCompleted ? "/" : "O";
                 sb.AppendLine($"   {checkbox} {obj.description} ({obj.currentCount}/{obj.targetCount})");
             }
 
