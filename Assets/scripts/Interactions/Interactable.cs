@@ -6,8 +6,8 @@ public class Interactable : MonoBehaviour
 {
     public enum InteractionType { PromptOnly, Dialogue, Note, GiveItem }
 
-    [Header("Interaction Type")]
-    public InteractionType interactionType = InteractionType.Dialogue;
+    [Header("Interaction Types (Multiple Allowed)")]
+    public InteractionType[] interactionTypes;
 
     [Header("UI References")]
     public TextMeshProUGUI promptText;
@@ -24,22 +24,25 @@ public class Interactable : MonoBehaviour
 
     [Header("Dialogue Settings")]
     public DialogueData dialogueData;
-    public bool repeatable = true;
+    public bool dialogueRepeatable = false;
 
-    [Header("Output Settings")]
+    [Header("Output")]
     public bool removeAfterInteraction = false;
+    public float removeDelay = 0.3f;
 
     [Header("Required Item")]
     public string requiredItem;
 
-    [Header("Gives Item On Interaction")]
+    [Header("Give Item")]
     public bool givesItem = false;
+    public bool giveItemRepeatable = false;
     public string itemName = "New Item";
-    public string itemDescription = "Item description goes here.";
+    public string itemDescription = "Item description";
     public Sprite itemIcon;
 
-    [Header("Note Interaction")]
+    [Header("Note")]
     [TextArea(4, 10)] public string noteText = "This is the note text.";
+    public bool noteRepeatable = true;
     public KeyCode closeNoteKey = KeyCode.E;
 
     [Header("Animation & Audio")]
@@ -63,11 +66,15 @@ public class Interactable : MonoBehaviour
     public string objectiveID;
     public int objectiveAmount = 1;
 
+    // Internal states
+    private bool dialogueUsed = false;
+    private bool noteUsed = false;
+    private bool giveItemUsed = false;
+    private bool promptUsed = false;
+
     private bool playerInRange = false;
     private bool dialogueActive = false;
-    private bool dialogueFinished = false;
     private bool noteOpen = false;
-    private bool promptDismissed = false;
 
     private void Start()
     {
@@ -80,12 +87,12 @@ public class Interactable : MonoBehaviour
         if (!other.CompareTag("Player")) return;
 
         playerInRange = true;
-        promptDismissed = false;
+        promptUsed = false;
 
         if (triggerQuestOnEnter)
             TriggerQuest();
 
-        if (promptText != null && (!dialogueFinished || repeatable))
+        if (promptText != null)
         {
             promptText.text = promptMessage;
             StartCoroutine(FadeText(promptText, 0, 1, promptFadeInDuration));
@@ -97,64 +104,53 @@ public class Interactable : MonoBehaviour
         if (!other.CompareTag("Player")) return;
 
         playerInRange = false;
-        promptDismissed = false;
 
         if (promptText != null)
             StartCoroutine(FadeText(promptText, promptText.alpha, 0, promptFadeOutDuration));
 
-        if (interactionType == InteractionType.Note && noteOpen)
+        if (noteOpen)
             CloseNote();
     }
 
     private void Update()
     {
+        // Close note
         if (noteOpen && Input.GetKeyDown(closeNoteKey))
         {
             CloseNote();
             return;
         }
 
-        if (playerInRange && !dialogueActive && (!dialogueFinished || repeatable) && !noteOpen)
+        // Interaction
+        if (playerInRange && !dialogueActive && !noteOpen)
         {
             if (requireKeyPress && Input.GetKeyDown(interactKey))
-                TryInteraction();
+                StartCoroutine(TryInteraction());
             else if (!requireKeyPress)
-                TryInteraction();
+                StartCoroutine(TryInteraction());
         }
     }
 
-    private void TryInteraction()
+    private IEnumerator TryInteraction()
     {
-        if (!string.IsNullOrEmpty(requiredItem) && !InventoryManager.Instance.HasItem(requiredItem))
+        // ---- Missing Item Check (Now Appears in Prompt) ----
+        if (!string.IsNullOrEmpty(requiredItem) &&
+            !InventoryManager.Instance.HasItem(requiredItem))
         {
-            if (DialogueManager.Instance != null)
-                DialogueManager.Instance.ShowTemporaryMessage(missingItemMessage);
-            return;
+            if (promptText != null)
+            {
+                promptText.text = missingItemMessage;
+                promptText.alpha = 1;
+            }
+            yield break;
         }
 
         TriggerExtras();
 
-        switch (interactionType)
+        // Run all interaction types in proper order
+        foreach (var type in interactionTypes)
         {
-            case InteractionType.PromptOnly:
-                HandlePromptOnly();
-                break;
-
-            case InteractionType.Dialogue:
-                StartCoroutine(StartDialogue());
-                break;
-
-            case InteractionType.Note:
-                OpenNote();
-                break;
-
-            case InteractionType.GiveItem:
-                if (givesItem)
-                {
-                    InventoryManager.Instance.AddItem(itemIcon, itemName, itemDescription);
-                    StartCoroutine(StartDialogue());
-                }
-                break;
+            yield return StartCoroutine(RunInteractionType(type));
         }
 
         if (triggerQuestOnInteraction)
@@ -162,18 +158,53 @@ public class Interactable : MonoBehaviour
 
         if (updateQuestObjective)
             TriggerQuestObjective();
+
+        // ---- DELAYED REMOVE ----
+        if (removeAfterInteraction)
+        {
+            yield return new WaitForSeconds(removeDelay);
+            Destroy(gameObject);
+        }
+    }
+
+    private IEnumerator RunInteractionType(InteractionType type)
+    {
+        switch (type)
+        {
+            case InteractionType.PromptOnly:
+                HandlePromptOnly();
+                break;
+
+            case InteractionType.Dialogue:
+                if (!dialogueUsed || dialogueRepeatable)
+                    yield return StartCoroutine(RunDialogue());
+                break;
+
+            case InteractionType.Note:
+                if (!noteUsed || noteRepeatable)
+                    OpenNote();
+                break;
+
+            case InteractionType.GiveItem:
+                if (givesItem && (!giveItemUsed || giveItemRepeatable))
+                {
+                    InventoryManager.Instance.AddItem(itemIcon, itemName, itemDescription);
+                    giveItemUsed = true;
+                }
+                break;
+        }
     }
 
     private void TriggerExtras()
     {
-        if (triggerAnimation && animator != null && !string.IsNullOrEmpty(animationTriggerName))
+        if (triggerAnimation && animator != null)
             animator.SetTrigger(animationTriggerName);
 
         if (playSFX && interactionSFX != null)
         {
-            AudioSource source = audioSource != null ? audioSource : DialogueManager.Instance?.voiceSource;
-            if (source != null)
-                source.PlayOneShot(interactionSFX);
+            AudioSource src = audioSource != null ? audioSource : DialogueManager.Instance?.voiceSource;
+            if (src != null)
+                src.PlayOneShot(interactionSFX);
         }
     }
 
@@ -201,47 +232,40 @@ public class Interactable : MonoBehaviour
 
     private void HandlePromptOnly()
     {
-        if (promptDismissed || promptText == null) return;
+        if (promptUsed || promptText == null) return;
+
         StartCoroutine(FadeText(promptText, promptText.alpha, 0, promptFadeOutDuration));
-        promptDismissed = true;
+        promptUsed = true;
     }
 
     private void OpenNote()
     {
-        if (notePanel != null && noteTextUI != null)
-        {
-            notePanel.SetActive(true);
-            noteTextUI.text = noteText;
-            noteOpen = true;
+        if (notePanel == null || noteTextUI == null) return;
 
-            if (promptText != null)
-                StartCoroutine(FadeText(promptText, promptText.alpha, 0, promptFadeOutDuration));
-        }
+        notePanel.SetActive(true);
+        noteTextUI.text = noteText;
+        noteOpen = true;
+        noteUsed = true;
+
+        if (promptText != null)
+            StartCoroutine(FadeText(promptText, promptText.alpha, 0, promptFadeOutDuration));
     }
 
     private void CloseNote()
     {
-        if (notePanel != null)
-        {
-            notePanel.SetActive(false);
-            noteOpen = false;
-            dialogueFinished = true;
+        if (notePanel == null) return;
 
-            if (repeatable && playerInRange && promptText != null)
-                StartCoroutine(FadeText(promptText, 0, 1, promptFadeInDuration));
+        notePanel.SetActive(false);
+        noteOpen = false;
 
-            if (removeAfterInteraction && (!repeatable || !playerInRange))
-                Destroy(gameObject);
-        }
+        if (noteRepeatable && playerInRange && promptText != null)
+            StartCoroutine(FadeText(promptText, 0, 1, promptFadeInDuration));
     }
 
-    private IEnumerator StartDialogue()
+    private IEnumerator RunDialogue()
     {
         if (dialogueData == null || DialogueManager.Instance == null)
-        {
-            Debug.LogWarning($"Interactable '{name}' has no DialogueData or DialogueManager assigned!");
             yield break;
-        }
 
         dialogueActive = true;
 
@@ -254,18 +278,16 @@ public class Interactable : MonoBehaviour
             yield return null;
 
         dialogueActive = false;
-        dialogueFinished = true;
+        dialogueUsed = true;
 
-        if (repeatable && playerInRange && promptText != null)
+        if (dialogueRepeatable && playerInRange && promptText != null)
             StartCoroutine(FadeText(promptText, 0, 1, promptFadeInDuration));
-
-        if (removeAfterInteraction && (!repeatable || !playerInRange))
-            Destroy(gameObject);
     }
 
     private IEnumerator FadeText(TextMeshProUGUI textElement, float from, float to, float duration)
     {
         float elapsed = 0f;
+
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
@@ -273,6 +295,7 @@ public class Interactable : MonoBehaviour
             textElement.alpha = Mathf.Lerp(from, to, t);
             yield return null;
         }
+
         textElement.alpha = to;
     }
 }
