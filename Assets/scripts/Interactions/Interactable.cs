@@ -133,7 +133,7 @@ public class Interactable : MonoBehaviour
 
     private IEnumerator TryInteraction()
     {
-        // ---- Missing Item Check (Now Appears in Prompt) ----
+        // Missing item prompt
         if (!string.IsNullOrEmpty(requiredItem) &&
             !InventoryManager.Instance.HasItem(requiredItem))
         {
@@ -147,11 +147,27 @@ public class Interactable : MonoBehaviour
 
         TriggerExtras();
 
-        // Run all interaction types in proper order
+        bool dialogueRequested = false;
+
+        // ---- Run all types in parallel but respecting "used" flags ----
         foreach (var type in interactionTypes)
         {
-            yield return StartCoroutine(RunInteractionType(type));
+            if (type == InteractionType.Dialogue)
+            {
+                // Mark that dialogue is needed (but don't start yet)
+                if (!dialogueUsed || dialogueRepeatable)
+                    dialogueRequested = true;
+            }
+            else
+            {
+                // Non-dialogue interactions execute immediately
+                RunInteractionType(type);
+            }
         }
+
+        // ---- Dialogue must run LAST because it blocks movement / input ----
+        if (dialogueRequested)
+            yield return StartCoroutine(RunDialogue());
 
         if (triggerQuestOnInteraction)
             TriggerQuest();
@@ -159,7 +175,6 @@ public class Interactable : MonoBehaviour
         if (updateQuestObjective)
             TriggerQuestObjective();
 
-        // ---- DELAYED REMOVE ----
         if (removeAfterInteraction)
         {
             yield return new WaitForSeconds(removeDelay);
@@ -167,22 +182,26 @@ public class Interactable : MonoBehaviour
         }
     }
 
-    private IEnumerator RunInteractionType(InteractionType type)
+
+
+    private void RunInteractionType(InteractionType type)
     {
         switch (type)
         {
             case InteractionType.PromptOnly:
-                HandlePromptOnly();
-                break;
-
-            case InteractionType.Dialogue:
-                if (!dialogueUsed || dialogueRepeatable)
-                    yield return StartCoroutine(RunDialogue());
+                if (!promptUsed)
+                {
+                    HandlePromptOnly();
+                    promptUsed = true;
+                }
                 break;
 
             case InteractionType.Note:
                 if (!noteUsed || noteRepeatable)
+                {
                     OpenNote();
+                    noteUsed = true;
+                }
                 break;
 
             case InteractionType.GiveItem:
@@ -192,8 +211,12 @@ public class Interactable : MonoBehaviour
                     giveItemUsed = true;
                 }
                 break;
+
+                // Dialogue is handled in TryInteraction() to ensure correct timing
         }
     }
+
+
 
     private void TriggerExtras()
     {
