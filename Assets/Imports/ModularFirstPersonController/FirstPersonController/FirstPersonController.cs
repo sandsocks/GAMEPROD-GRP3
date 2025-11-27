@@ -39,13 +39,6 @@ public class FirstPersonController : MonoBehaviour
     private float pitch = 0.0f;
     private Image crosshairObject;
 
-    // Pause / Unlock Feature
-    public KeyCode togglePauseKey = KeyCode.Escape; // Toggle pause
-    public KeyCode inspectKey = KeyCode.Tab;        // Hold-to-inspect
-
-    private bool isPaused = false;
-
-
     #region Camera Zoom Variables
 
     public bool enableZoom = true;
@@ -56,8 +49,6 @@ public class FirstPersonController : MonoBehaviour
 
     // Internal Variables
     private bool isZoomed = false;
-
-
 
     #endregion
     #endregion
@@ -367,31 +358,7 @@ public class FirstPersonController : MonoBehaviour
 
         CheckGround();
 
-        // --- ESCAPE → Toggle Pause ---
-        if (Input.GetKeyDown(togglePauseKey))
-        {
-            isPaused = !isPaused;
-            ApplyPauseState(isPaused);
-        }
-
-        // --- TAB → Inspect mode (hold) ---
-        if (Input.GetKey(inspectKey))
-        {
-            ApplyInspectState();
-        }
-        else if (!isPaused)
-        {
-            // Restore normal gameplay when not paused
-            ApplyNormalState();
-        }
-
-        // if paused, skip movement/camera logic
-        if (isPaused) return;
-
-
-
-
-        if (enableHeadBob)
+        if(enableHeadBob)
         {
             HeadBob();
         }
@@ -473,56 +440,6 @@ public class FirstPersonController : MonoBehaviour
 
         #endregion
     }
-
-    private void ApplyPauseState(bool pause)
-    {
-        if (pause)
-        {
-            Time.timeScale = 0f;
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-            playerCanMove = false;
-            cameraCanMove = false;
-        }
-        else
-        {
-            Time.timeScale = 1f;
-            if (lockCursor)
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-            }
-            playerCanMove = true;
-            cameraCanMove = true;
-        }
-    }
-
-    private void ApplyInspectState()
-    {
-        // Game keeps running
-        Time.timeScale = 1f;
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-
-        // Player moves, camera frozen
-        playerCanMove = true;
-        cameraCanMove = false;
-    }
-
-    private void ApplyNormalState()
-    {
-        // Restore normal gameplay
-        Time.timeScale = 1f;
-        if (lockCursor)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
-        playerCanMove = true;
-        cameraCanMove = true;
-    }
-
-
 
     // Sets isGrounded based on a raycast sent straigth down from the player object
     private void CheckGround()

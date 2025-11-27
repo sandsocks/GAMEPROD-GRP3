@@ -124,6 +124,6 @@ AssetOrigin:
   productId: 189884
   packageName: Modular First Person Controller
   packageVersion: 1.0.1
-  assetPath: Assets/ModularFirstPersonController/DemoScene/Gridbox Prototype Materials/Resources/Textures/Prototype
-    Grid/prototype_512x512_green1.png
+  assetPath: Assets/Imports/ModularFirstPersonController/DemoScene/Gridbox Prototype
+    Materials/Resources/Textures/Prototype Grid/prototype_512x512_green1.png
   uploadId: 428261

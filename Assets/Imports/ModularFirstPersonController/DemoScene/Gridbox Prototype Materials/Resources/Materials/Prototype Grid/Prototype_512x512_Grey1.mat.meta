@@ -11,6 +11,6 @@ AssetOrigin:
   productId: 189884
   packageName: Modular First Person Controller
   packageVersion: 1.0.1
-  assetPath: Assets/ModularFirstPersonController/DemoScene/Gridbox Prototype Materials/Resources/Materials/Prototype
-    Grid/Prototype_512x512_Grey1.mat
+  assetPath: Assets/Imports/ModularFirstPersonController/DemoScene/Gridbox Prototype
+    Materials/Resources/Materials/Prototype Grid/Prototype_512x512_Grey1.mat
   uploadId: 428261
