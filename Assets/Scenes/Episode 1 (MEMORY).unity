@@ -3492,6 +3492,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 199512, guid: d6a6378baf728479c897f88a892620af, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1689060181}
+    - targetCorrespondingSourceObject: {fileID: 199512, guid: d6a6378baf728479c897f88a892620af, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1689060183}
   m_SourcePrefab: {fileID: 100100000, guid: d6a6378baf728479c897f88a892620af, type: 3}
 --- !u!1 &241336248
 GameObject:
@@ -21477,6 +21480,24 @@ MonoBehaviour:
   interactionCamera: {fileID: 1393356637}
   renderTexture: {fileID: 8400000, guid: 1528acf246a19472fb2d7ada997fea94, type: 2}
   showDebugRay: 0
+--- !u!114 &1689060183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689060176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ac7c76e91bcb3248a389c47fbe3a423, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ApplyPersistentTint
+  rendererToTint: {fileID: 1689060184}
+--- !u!23 &1689060184 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2358984, guid: d6a6378baf728479c897f88a892620af, type: 3}
+  m_PrefabInstance: {fileID: 235877670}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1689633435
 GameObject:
   m_ObjectHideFlags: 0
