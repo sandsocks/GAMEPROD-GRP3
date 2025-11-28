@@ -24772,7 +24772,7 @@ MonoBehaviour:
   - questId: door_riddle
     questName: Door Riddle
     description: Unlock the front door
-    isActive: 0
+    isActive: 1
     isCompleted: 0
     objectives:
     - objectiveId: House Key
@@ -24823,7 +24823,7 @@ MonoBehaviour:
       targetCount: 1
       isCompleted: 0
     nextQuestIds: []
-  activeQuestsText: {fileID: 0}
+  activeQuestsText: {fileID: 1009218817}
 --- !u!4 &1846570661
 Transform:
   m_ObjectHideFlags: 0
