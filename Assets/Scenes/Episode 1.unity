@@ -829,7 +829,7 @@ GameObject:
   - component: {fileID: 53721084}
   - component: {fileID: 53721086}
   - component: {fileID: 53721085}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Riddle 1 panel text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -965,7 +965,7 @@ GameObject:
   - component: {fileID: 55144016}
   - component: {fileID: 55144018}
   - component: {fileID: 55144017}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Riddle 1 prompt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1583,7 +1583,7 @@ GameObject:
   - component: {fileID: 132975407}
   - component: {fileID: 132975409}
   - component: {fileID: 132975408}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stick Prompt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2551,7 +2551,8 @@ GameObject:
   - component: {fileID: 221322716}
   - component: {fileID: 221322715}
   - component: {fileID: 221322714}
-  m_Layer: 0
+  - component: {fileID: 221322717}
+  m_Layer: 6
   m_Name: NoteBook Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2628,7 +2629,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 1838877472}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -2641,6 +2642,22 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &221322717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 221322712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a653ad19e61b53b4c989217787c35ea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BillboardUI
+  targetCamera: {fileID: 1393356637}
+  lockY: 1
+  smooth: 1
+  smoothSpeed: 10
 --- !u!1001 &228880047
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2875,7 +2892,7 @@ GameObject:
   - component: {fileID: 241336249}
   - component: {fileID: 241336251}
   - component: {fileID: 241336250}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Riddle 1 panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4093,7 +4110,8 @@ GameObject:
   - component: {fileID: 360631718}
   - component: {fileID: 360631717}
   - component: {fileID: 360631716}
-  m_Layer: 0
+  - component: {fileID: 360631719}
+  m_Layer: 6
   m_Name: Riddle 2 Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4171,7 +4189,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 1838877472}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -4184,6 +4202,22 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &360631719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 360631714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a653ad19e61b53b4c989217787c35ea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BillboardUI
+  targetCamera: {fileID: 1393356637}
+  lockY: 0
+  smooth: 1
+  smoothSpeed: 10
 --- !u!4 &369538880 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1964453678863313673, guid: 351be08944de6c445bf85bc7c727e039, type: 3}
@@ -4943,7 +4977,7 @@ GameObject:
   - component: {fileID: 483160153}
   - component: {fileID: 483160155}
   - component: {fileID: 483160154}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Notebook Prompt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5584,7 +5618,7 @@ GameObject:
   - component: {fileID: 547213899}
   - component: {fileID: 547213901}
   - component: {fileID: 547213900}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Key Prompt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5920,13 +5954,13 @@ GameObject:
   - component: {fileID: 568070633}
   - component: {fileID: 568070635}
   - component: {fileID: 568070634}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Notebook Prompt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &568070633
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7011,7 +7045,7 @@ MonoBehaviour:
   requireKeyPress: 1
   promptFadeInDuration: 0.5
   promptFadeOutDuration: 0.5
-  dialogueData: {fileID: 0}
+  dialogueData: {fileID: 11400000, guid: 637cc8d0ee4365e4e81f6ba22f1b0845, type: 2}
   dialogueRepeatable: 0
   removeAfterInteraction: 0
   removeDelay: 0.3
@@ -7330,7 +7364,7 @@ GameObject:
   - component: {fileID: 641899010}
   - component: {fileID: 641899012}
   - component: {fileID: 641899011}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Riddle 1 panel text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8997,7 +9031,8 @@ GameObject:
   - component: {fileID: 807956508}
   - component: {fileID: 807956507}
   - component: {fileID: 807956506}
-  m_Layer: 0
+  - component: {fileID: 807956509}
+  m_Layer: 6
   m_Name: Mat Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9074,7 +9109,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 1838877472}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -9087,6 +9122,22 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &807956509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807956504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a653ad19e61b53b4c989217787c35ea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BillboardUI
+  targetCamera: {fileID: 1393356637}
+  lockY: 0
+  smooth: 1
+  smoothSpeed: 10
 --- !u!1 &826919097 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8312376095884194061, guid: 1f4d8997f4d73564c8c06c403a646fb2, type: 3}
@@ -9998,7 +10049,8 @@ GameObject:
   - component: {fileID: 917891687}
   - component: {fileID: 917891686}
   - component: {fileID: 917891685}
-  m_Layer: 0
+  - component: {fileID: 917891688}
+  m_Layer: 6
   m_Name: Stick Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10075,7 +10127,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 1838877472}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -10088,6 +10140,22 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &917891688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 917891683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a653ad19e61b53b4c989217787c35ea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BillboardUI
+  targetCamera: {fileID: 1393356637}
+  lockY: 0
+  smooth: 1
+  smoothSpeed: 10
 --- !u!1 &922573588
 GameObject:
   m_ObjectHideFlags: 0
@@ -10527,6 +10595,7 @@ RectTransform:
   - {fileID: 922573589}
   - {fileID: 1388038828}
   - {fileID: 279982159}
+  - {fileID: 2083029644}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -10572,7 +10641,7 @@ GameObject:
   - component: {fileID: 965007277}
   - component: {fileID: 965007279}
   - component: {fileID: 965007278}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Shed Puzzle text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11109,7 +11178,7 @@ GameObject:
   - component: {fileID: 1007290343}
   - component: {fileID: 1007290345}
   - component: {fileID: 1007290344}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Riddle 2 prompt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11559,7 +11628,7 @@ GameObject:
   - component: {fileID: 1015948340}
   - component: {fileID: 1015948342}
   - component: {fileID: 1015948341}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Riddle 2 panel text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11695,7 +11764,7 @@ GameObject:
   - component: {fileID: 1015998502}
   - component: {fileID: 1015998504}
   - component: {fileID: 1015998503}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Notebook Prompt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12879,7 +12948,7 @@ MonoBehaviour:
   requireKeyPress: 1
   promptFadeInDuration: 0.5
   promptFadeOutDuration: 0.5
-  dialogueData: {fileID: 11400000, guid: 637cc8d0ee4365e4e81f6ba22f1b0845, type: 2}
+  dialogueData: {fileID: 0}
   dialogueRepeatable: 0
   removeAfterInteraction: 0
   removeDelay: 0.3
@@ -12997,7 +13066,8 @@ GameObject:
   - component: {fileID: 1091547095}
   - component: {fileID: 1091547094}
   - component: {fileID: 1091547093}
-  m_Layer: 0
+  - component: {fileID: 1091547096}
+  m_Layer: 6
   m_Name: Key Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13074,7 +13144,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 1838877472}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -13087,6 +13157,22 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1091547096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1091547091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a653ad19e61b53b4c989217787c35ea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BillboardUI
+  targetCamera: {fileID: 1393356637}
+  lockY: 0
+  smooth: 1
+  smoothSpeed: 10
 --- !u!4 &1103830230 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5902845897260316042, guid: 2efc5a27e0acba0488836f7b60c79069, type: 3}
@@ -13246,7 +13332,8 @@ GameObject:
   - component: {fileID: 1131690422}
   - component: {fileID: 1131690421}
   - component: {fileID: 1131690420}
-  m_Layer: 0
+  - component: {fileID: 1131690423}
+  m_Layer: 6
   m_Name: Mitt Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13323,7 +13410,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 1838877472}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -13336,6 +13423,22 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1131690423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1131690418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a653ad19e61b53b4c989217787c35ea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BillboardUI
+  targetCamera: {fileID: 1393356637}
+  lockY: 0
+  smooth: 1
+  smoothSpeed: 10
 --- !u!1 &1134881299 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6007749847110677541, guid: 1f4d8997f4d73564c8c06c403a646fb2, type: 3}
@@ -14087,13 +14190,14 @@ GameObject:
   - component: {fileID: 1207081912}
   - component: {fileID: 1207081911}
   - component: {fileID: 1207081910}
-  m_Layer: 0
+  - component: {fileID: 1207081913}
+  m_Layer: 6
   m_Name: NoteBook Canvas (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1207081909
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14164,7 +14268,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 1838877472}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -14177,6 +14281,22 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1207081913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1207081908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a653ad19e61b53b4c989217787c35ea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BillboardUI
+  targetCamera: {fileID: 1393356637}
+  lockY: 1
+  smooth: 1
+  smoothSpeed: 10
 --- !u!4 &1212520270 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2685496456950871542, guid: aae84da7d08598d4d822bea7969e88b9, type: 3}
@@ -16030,6 +16150,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_MaxRayIntersections: 0
+--- !u!4 &1393356639 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4459864851310106429, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+  m_PrefabInstance: {fileID: 1670881362}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1398092889
 GameObject:
   m_ObjectHideFlags: 0
@@ -16343,6 +16468,7 @@ GameObject:
   - component: {fileID: 1414939317}
   - component: {fileID: 1414939316}
   - component: {fileID: 1414939315}
+  - component: {fileID: 1414939318}
   m_Layer: 0
   m_Name: Lock Canvas
   m_TagString: Untagged
@@ -16433,6 +16559,22 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1414939318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1414939313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a653ad19e61b53b4c989217787c35ea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BillboardUI
+  targetCamera: {fileID: 1393356637}
+  lockY: 1
+  smooth: 1
+  smoothSpeed: 10
 --- !u!1001 &1415751494
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17037,7 +17179,8 @@ GameObject:
   - component: {fileID: 1503503743}
   - component: {fileID: 1503503742}
   - component: {fileID: 1503503741}
-  m_Layer: 0
+  - component: {fileID: 1503503744}
+  m_Layer: 6
   m_Name: Riddle 1 canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17115,7 +17258,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 1838877472}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -17128,6 +17271,22 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1503503744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1503503739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a653ad19e61b53b4c989217787c35ea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BillboardUI
+  targetCamera: {fileID: 1393356637}
+  lockY: 0
+  smooth: 1
+  smoothSpeed: 10
 --- !u!1 &1510040450 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7631883552607671780, guid: 1f4d8997f4d73564c8c06c403a646fb2, type: 3}
@@ -17167,7 +17326,8 @@ GameObject:
   - component: {fileID: 1510062116}
   - component: {fileID: 1510062115}
   - component: {fileID: 1510062114}
-  m_Layer: 0
+  - component: {fileID: 1510062117}
+  m_Layer: 6
   m_Name: Stick puzzle canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17244,7 +17404,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 1838877472}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -17257,6 +17417,22 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1510062117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1510062112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a653ad19e61b53b4c989217787c35ea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BillboardUI
+  targetCamera: {fileID: 1393356637}
+  lockY: 1
+  smooth: 1
+  smoothSpeed: 10
 --- !u!1 &1513058212
 GameObject:
   m_ObjectHideFlags: 0
@@ -18441,7 +18617,7 @@ GameObject:
   - component: {fileID: 1667340660}
   - component: {fileID: 1667340662}
   - component: {fileID: 1667340661}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mitt Prompt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18695,6 +18871,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4459864851310106426, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: m_Depth
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459864851310106426, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: m_AllowMSAA
       value: 0
       objectReference: {fileID: 0}
@@ -18702,6 +18882,14 @@ PrefabInstance:
       propertyPath: m_TargetTexture
       value: 
       objectReference: {fileID: 8400000, guid: 1528acf246a19472fb2d7ada997fea94, type: 2}
+    - target: {fileID: 4459864851310106426, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459864851310106426, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: m_AllowDynamicResolution
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4459864851508666808, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -18740,6 +18928,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4459864851508666808, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       insertIndex: -1
       addedObject: {fileID: 752737350}
+    - targetCorrespondingSourceObject: {fileID: 4459864851310106429, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1838877469}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4459864851310106424, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       insertIndex: -1
@@ -19188,7 +19379,7 @@ GameObject:
   - component: {fileID: 1733851523}
   - component: {fileID: 1733851525}
   - component: {fileID: 1733851524}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Riddle 2 panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20358,6 +20549,238 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1837040293}
   m_CullTransparentMesh: 1
+--- !u!1 &1838877468
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1838877469}
+  - component: {fileID: 1838877472}
+  - component: {fileID: 1838877471}
+  - component: {fileID: 1838877470}
+  m_Layer: 0
+  m_Name: Text Camera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1838877469
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838877468}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1393356639}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1838877470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838877468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23c1ce4fb46143f46bc5cb5224c934f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.HighDefinition.Runtime::UnityEngine.Rendering.HighDefinition.HDAdditionalCameraData
+  clearColorMode: 1
+  backgroundColorHDR: {r: 0.025, g: 0.07, b: 0.19, a: 0}
+  clearDepth: 1
+  volumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  volumeAnchorOverride: {fileID: 0}
+  antialiasing: 0
+  SMAAQuality: 2
+  dithering: 0
+  stopNaNs: 0
+  taaSharpenStrength: 0.5
+  TAAQuality: 1
+  taaSharpenMode: 0
+  taaRingingReduction: 0
+  taaHistorySharpening: 0.35
+  taaAntiFlicker: 0.5
+  taaMotionVectorRejection: 0
+  taaAntiHistoryRinging: 0
+  taaBaseBlendFactor: 0.875
+  taaJitterScale: 1
+  physicalParameters:
+    m_Iso: 200
+    m_ShutterSpeed: 0.005
+    m_Aperture: 16
+    m_FocusDistance: 10
+    m_BladeCount: 5
+    m_Curvature: {x: 2, y: 11}
+    m_BarrelClipping: 0.25
+    m_Anamorphism: 0
+  flipYMode: 0
+  xrRendering: 1
+  fullscreenPassthrough: 0
+  allowDynamicResolution: 0
+  customRenderingSettings: 0
+  invertFaceCulling: 0
+  probeLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  hasPersistentHistory: 0
+  screenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  screenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  allowDeepLearningSuperSampling: 1
+  deepLearningSuperSamplingUseCustomQualitySettings: 0
+  deepLearningSuperSamplingQuality: 0
+  deepLearningSuperSamplingUseCustomAttributes: 0
+  deepLearningSuperSamplingUseOptimalSettings: 1
+  deepLearningSuperSamplingSharpening: 0
+  allowFidelityFX2SuperResolution: 1
+  fidelityFX2SuperResolutionUseCustomQualitySettings: 0
+  fidelityFX2SuperResolutionQuality: 0
+  fidelityFX2SuperResolutionUseCustomAttributes: 0
+  fidelityFX2SuperResolutionUseOptimalSettings: 1
+  fidelityFX2SuperResolutionEnableSharpening: 0
+  fidelityFX2SuperResolutionSharpening: 0
+  fsrOverrideSharpness: 0
+  fsrSharpness: 0.92
+  exposureTarget: {fileID: 0}
+  materialMipBias: 0
+  m_RenderingPathCustomFrameSettings:
+    bitDatas:
+      data1: 5770166122053581
+      data2: 12934340311651418136
+    lodBias: 1
+    lodBiasMode: 0
+    lodBiasQualityLevel: 0
+    maximumLODLevel: 0
+    maximumLODLevelMode: 0
+    maximumLODLevelQualityLevel: 0
+    sssQualityMode: 0
+    sssQualityLevel: 0
+    sssCustomSampleBudget: 20
+    sssCustomDownsampleSteps: 0
+    msaaMode: 1
+    materialQuality: 0
+  renderingPathCustomFrameSettingsOverrideMask:
+    mask:
+      data1: 0
+      data2: 0
+  defaultFrameSettings: 0
+  m_Version: 9
+  m_ObsoleteRenderingPath: 0
+  m_ObsoleteFrameSettings:
+    overrides: 0
+    enableShadow: 0
+    enableContactShadows: 0
+    enableShadowMask: 0
+    enableSSR: 0
+    enableSSAO: 0
+    enableSubsurfaceScattering: 0
+    enableTransmission: 0
+    enableAtmosphericScattering: 0
+    enableVolumetrics: 0
+    enableReprojectionForVolumetrics: 0
+    enableLightLayers: 0
+    enableExposureControl: 1
+    diffuseGlobalDimmer: 0
+    specularGlobalDimmer: 0
+    shaderLitMode: 0
+    enableDepthPrepassWithDeferredRendering: 0
+    enableTransparentPrepass: 0
+    enableMotionVectors: 0
+    enableObjectMotionVectors: 0
+    enableDecals: 0
+    enableRoughRefraction: 0
+    enableTransparentPostpass: 0
+    enableDistortion: 0
+    enablePostprocess: 0
+    enableOpaqueObjects: 0
+    enableTransparentObjects: 0
+    enableRealtimePlanarReflection: 0
+    enableMSAA: 0
+    enableAsyncCompute: 0
+    runLightListAsync: 0
+    runSSRAsync: 0
+    runSSAOAsync: 0
+    runContactShadowsAsync: 0
+    runVolumeVoxelizationAsync: 0
+    lightLoopSettings:
+      overrides: 0
+      enableDeferredTileAndCluster: 0
+      enableComputeLightEvaluation: 0
+      enableComputeLightVariants: 0
+      enableComputeMaterialVariants: 0
+      enableFptlForForwardOpaque: 0
+      enableBigTilePrepass: 0
+      isFptlEnabled: 0
+--- !u!81 &1838877471
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838877468}
+  m_Enabled: 1
+--- !u!20 &1838877472
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838877468}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 1
+  m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 20.78461
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60.000004
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 64
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 8400000, guid: 85a4d8fbf855f5445b96d3637c998a30, type: 2}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 0
+  m_AllowMSAA: 0
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
 --- !u!1001 &1840006269
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20432,7 +20855,8 @@ GameObject:
   - component: {fileID: 1840944545}
   - component: {fileID: 1840944544}
   - component: {fileID: 1840944543}
-  m_Layer: 0
+  - component: {fileID: 1840944546}
+  m_Layer: 6
   m_Name: NoteBook Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20509,7 +20933,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 1838877472}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -20522,6 +20946,22 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1840944546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840944541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a653ad19e61b53b4c989217787c35ea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BillboardUI
+  targetCamera: {fileID: 1393356637}
+  lockY: 0
+  smooth: 1
+  smoothSpeed: 10
 --- !u!1 &1846570659
 GameObject:
   m_ObjectHideFlags: 0
@@ -20635,9 +21075,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: def09e9da26967b45bd846be35030b9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::squigglytext
-  mode: 0
+  mode: 1
   selectedTexts:
-  - {fileID: 0}
+  - {fileID: 1009218817}
   frames: 4
   frameRate: 8
   jitter: 0.5
@@ -22602,7 +23042,7 @@ GameObject:
   - component: {fileID: 2007554089}
   - component: {fileID: 2007554091}
   - component: {fileID: 2007554090}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: stick puzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22793,7 +23233,8 @@ GameObject:
   - component: {fileID: 2032343572}
   - component: {fileID: 2032343571}
   - component: {fileID: 2032343570}
-  m_Layer: 0
+  - component: {fileID: 2032343573}
+  m_Layer: 6
   m_Name: Shovel canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22870,7 +23311,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 1838877472}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -22883,6 +23324,22 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &2032343573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032343568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a653ad19e61b53b4c989217787c35ea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BillboardUI
+  targetCamera: {fileID: 1393356637}
+  lockY: 1
+  smooth: 1
+  smoothSpeed: 10
 --- !u!1 &2033307629
 GameObject:
   m_ObjectHideFlags: 0
@@ -22895,7 +23352,8 @@ GameObject:
   - component: {fileID: 2033307633}
   - component: {fileID: 2033307632}
   - component: {fileID: 2033307631}
-  m_Layer: 0
+  - component: {fileID: 2033307634}
+  m_Layer: 6
   m_Name: Shed Puzzle Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22973,7 +23431,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 1838877472}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -22986,6 +23444,22 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &2033307634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2033307629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a653ad19e61b53b4c989217787c35ea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BillboardUI
+  targetCamera: {fileID: 1393356637}
+  lockY: 1
+  smooth: 1
+  smoothSpeed: 10
 --- !u!4 &2037997820 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7145519287754943667, guid: ea2e404c4f4ed1d41b78144c30acec63, type: 3}
@@ -23208,7 +23682,7 @@ GameObject:
   - component: {fileID: 2081490391}
   - component: {fileID: 2081490390}
   - component: {fileID: 2081490389}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Shovel prompt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23406,6 +23880,78 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2586bd2aaf6e4344785fd6e0f7f214bc, type: 3}
+--- !u!1 &2083029643
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2083029644}
+  - component: {fileID: 2083029646}
+  - component: {fileID: 2083029645}
+  m_Layer: 5
+  m_Name: RawImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2083029644
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2083029643}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 961881721}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1492, y: 839}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2083029645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2083029643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RawImage
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 8400000, guid: 85a4d8fbf855f5445b96d3637c998a30, type: 2}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!222 &2083029646
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2083029643}
+  m_CullTransparentMesh: 1
 --- !u!1001 &2083394356
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23857,7 +24403,7 @@ GameObject:
   - component: {fileID: 2110081511}
   - component: {fileID: 2110081513}
   - component: {fileID: 2110081512}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Shed Puzzle Prompt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24662,7 +25208,7 @@ GameObject:
   - component: {fileID: 2135368826}
   - component: {fileID: 2135368828}
   - component: {fileID: 2135368827}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Shed Puzzle Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24845,7 +25391,15 @@ PrefabInstance:
   m_Modification:
     serializedVersion: 3
     m_TransformParent: {fileID: 515119966}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 4328476976852856847, guid: 015fa64a413d9e3458799b6288663443, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8113088253583932643, guid: 015fa64a413d9e3458799b6288663443, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
