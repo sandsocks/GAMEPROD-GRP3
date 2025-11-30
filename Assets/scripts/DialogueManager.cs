@@ -64,6 +64,8 @@ public class DialogueManager : MonoBehaviour
         }
 
         DialogueLine line = currentDialogue.lines[currentLineIndex];
+        DialogueEvents.OnDialogueLineChanged?.Invoke(currentLineIndex);
+
 
         // UI updates
         if (nameText != null) nameText.text = string.IsNullOrEmpty(line.speakerName) ? "" : line.speakerName;
@@ -132,6 +134,7 @@ public class DialogueManager : MonoBehaviour
     private void EndDialogue()
     {
         StartCoroutine(FadeOutAndFinish());
+        DialogueEvents.OnDialogueEnded?.Invoke();
     }
 
     private IEnumerator FadeOutAndFinish()
