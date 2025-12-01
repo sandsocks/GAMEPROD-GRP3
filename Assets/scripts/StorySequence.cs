@@ -1,100 +1,118 @@
-using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class StorySequence : MonoBehaviour
 {
-    [System.Serializable]
-    public class GhostEvent
-    {
-        public GameObject ghostObject;      // The ghost model to show
-        public int lineIndexToAppear;       // Dialogue line when it appears
-        public float fadeInTime = 1f;
-        public float fadeOutTime = 1f;
+    [Header("Story Steps")]
+    public List<StoryStep> steps = new List<StoryStep>();
 
-        [HideInInspector] public bool hasAppeared;
-    }
+    [Header("Fade Settings")]
+    public float fadeInTime = 1f;
+    public float fadeOutTime = 1f;
+    [Range(0f, 1f)]
+    public float targetAlpha = 0.5f; // transparency while visible
 
-    [Header("Story Timeline")]
-    public List<GhostEvent> ghostEvents = new List<GhostEvent>();
-
-    private int lastLineIndex = -1;
+    private bool dialogueFinished = false;
 
     private void OnEnable()
     {
-        DialogueEvents.OnDialogueLineChanged += HandleLineChanged;
-        DialogueEvents.OnDialogueEnded += HandleDialogueEnded;
+        DialogueEvents.OnDialogueEnded += OnDialogueEnded;
     }
 
     private void OnDisable()
     {
-        DialogueEvents.OnDialogueLineChanged -= HandleLineChanged;
-        DialogueEvents.OnDialogueEnded -= HandleDialogueEnded;
+        DialogueEvents.OnDialogueEnded -= OnDialogueEnded;
     }
 
     private void Start()
     {
-        // Hide all ghosts on start
-        foreach (var ghost in ghostEvents)
+        // Disable all models at start
+        foreach (var step in steps)
         {
-            if (ghost.ghostObject != null)
-                SetGhostAlpha(ghost.ghostObject, 0f);
-        }
-    }
+            if (step.models == null) continue;
 
-    private void HandleLineChanged(int newLineIndex)
-    {
-        lastLineIndex = newLineIndex;
-
-        foreach (var ghost in ghostEvents)
-        {
-            // Appear when reaching the right line
-            if (ghost.lineIndexToAppear == newLineIndex && !ghost.hasAppeared)
+            foreach (var model in step.models)
             {
-                ghost.hasAppeared = true;
-                StartCoroutine(FadeGhost(ghost.ghostObject, 0f, 1f, ghost.fadeInTime));
-            }
-
-            // If we passed the ghost's moment, fade it out
-            if (ghost.lineIndexToAppear < newLineIndex)
-            {
-                StartCoroutine(FadeGhost(ghost.ghostObject, 1f, 0f, ghost.fadeOutTime));
+                if (model != null)
+                    model.SetActive(false);
             }
         }
     }
 
-    private void HandleDialogueEnded()
+    public void BeginSequence()
     {
-        // Fade out all ghosts when dialogue ends
-        foreach (var ghost in ghostEvents)
+        StartCoroutine(SequenceRoutine());
+    }
+
+    private IEnumerator SequenceRoutine()
+    {
+        foreach (StoryStep step in steps)
         {
-            if (ghost.ghostObject != null)
-                StartCoroutine(FadeGhost(ghost.ghostObject, 1f, 0f, ghost.fadeOutTime));
+            if (step.models != null)
+            {
+                // Enable models first
+                foreach (var model in step.models)
+                    if (model != null) model.SetActive(true);
+
+                // Fade in to targetAlpha
+                yield return FadeModels(step.models, 0f, targetAlpha, fadeInTime);
+            }
+
+            // Play Dialogue
+            if (step.dialogue != null)
+            {
+                dialogueFinished = false;
+                DialogueManager.Instance.StartDialogue(step.dialogue);
+
+                while (!dialogueFinished)
+                    yield return null;
+            }
+
+            // Fade out to 0
+            if (step.models != null)
+                yield return FadeModels(step.models, targetAlpha, 0f, fadeOutTime);
+
+            // Disable models after fade-out
+            if (step.models != null)
+            {
+                foreach (var model in step.models)
+                    if (model != null) model.SetActive(false);
+            }
         }
     }
 
-    // ---------------------- Fading Helpers ----------------------
-    private IEnumerator FadeGhost(GameObject ghost, float from, float to, float duration)
+    private IEnumerator FadeModels(GameObject[] models, float from, float to, float duration)
     {
-        if (ghost == null) yield break;
-
-        Renderer[] rends = ghost.GetComponentsInChildren<Renderer>();
         float t = 0f;
+        Renderer[][] renderers = new Renderer[models.Length][];
+
+        // Cache renderers
+        for (int i = 0; i < models.Length; i++)
+        {
+            if (models[i] != null)
+                renderers[i] = models[i].GetComponentsInChildren<Renderer>(true);
+        }
 
         while (t < duration)
         {
             t += Time.deltaTime;
             float alpha = Mathf.Lerp(from, to, t / duration);
 
-            foreach (var r in rends)
+            foreach (var group in renderers)
             {
-                foreach (var mat in r.materials)
+                if (group == null) continue;
+
+                foreach (var rend in group)
                 {
-                    if (mat.HasProperty("_Color"))
+                    foreach (var mat in rend.materials)
                     {
-                        Color c = mat.color;
-                        c.a = alpha;
-                        mat.color = c;
+                        if (mat.HasProperty("_Color"))
+                        {
+                            Color c = mat.color;
+                            c.a = alpha;
+                            mat.color = c;
+                        }
                     }
                 }
             }
@@ -103,21 +121,8 @@ public class StorySequence : MonoBehaviour
         }
     }
 
-    private void SetGhostAlpha(GameObject ghost, float alpha)
+    private void OnDialogueEnded()
     {
-        Renderer[] rends = ghost.GetComponentsInChildren<Renderer>();
-
-        foreach (var r in rends)
-        {
-            foreach (var mat in r.materials)
-            {
-                if (mat.HasProperty("_Color"))
-                {
-                    Color c = mat.color;
-                    c.a = alpha;
-                    mat.color = c;
-                }
-            }
-        }
+        dialogueFinished = true;
     }
 }
