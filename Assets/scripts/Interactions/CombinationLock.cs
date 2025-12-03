@@ -29,7 +29,7 @@ public class CombinationLock : MonoBehaviour
 
     [Header("Door Animator")]
     public Animator doorAnimator;                     // <-- NEW
-    public string doorBoolParameter = "OpenDoor";     // <-- NEW bool parameter
+    public string doorBoolParameter = "ShedDoorOpen";     // <-- NEW bool parameter
 
     [Header("Quest Integration")]
     public string questToStart;
