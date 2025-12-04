@@ -3,7 +3,22 @@ guid: ef2acd9c34a57a04bb187e50efadbde4
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: 3a8abbd9de4876a41bda4ee1573c1630, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: fef1e5c4b66961f469508cf9bfc4fae2, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: BearPicture
+    second: {fileID: 2800000, guid: 137ba008003727b44a3f6e13681a0080, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
