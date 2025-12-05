@@ -28,8 +28,8 @@ public class CombinationLock : MonoBehaviour
     public string unlockAnimationClipName;
 
     [Header("Door Animator")]
-    public Animator doorAnimator;                     // <-- NEW
-    public string doorBoolParameter = "ShedDoorOpen";     // <-- NEW bool parameter
+    public Animator doorAnimator;
+    public string doorBoolParameter = "ShedDoorOpen";
 
     [Header("Quest Integration")]
     public string questToStart;
@@ -38,8 +38,7 @@ public class CombinationLock : MonoBehaviour
     public string questObjectiveId;
 
     [Header("Lock State")]
-    public bool openDoor = false; // internal bool
-
+    public bool openDoor = false;
     private bool isInteracting = false;
     private bool playerInTrigger = false;
     private bool hasInteractedOnce = false;
@@ -48,6 +47,13 @@ public class CombinationLock : MonoBehaviour
     private Transform player;
     private MonoBehaviour playerController;
     private Quaternion[] initialRotations;
+
+    [Header("Audio SFX")]
+    public AudioSource audioSource;
+    public AudioClip wheelClickSFX;
+    public AudioClip unlockSFX;
+    public AudioClip doorOpenSFX;
+    public bool randomizePitch = true;
 
     void Start()
     {
@@ -178,6 +184,9 @@ public class CombinationLock : MonoBehaviour
 
         currentValues[index] = (currentValues[index] + 1) % 8;
         ApplyWheelRotation(index);
+
+        PlayWheelClickSFX();
+
         CheckCombination();
     }
 
@@ -204,13 +213,12 @@ public class CombinationLock : MonoBehaviour
     {
         if (isUnlocked) return;
         isUnlocked = true;
-
-        openDoor = true; // internal state
+        openDoor = true;
 
         StopInteraction();
         hasInteractedOnce = true;
 
-        // QUEST START / COMPLETE
+        // START QUEST
         if (!string.IsNullOrEmpty(questToStart))
             QuestManager.Instance.StartQuest(questToStart);
 
@@ -226,25 +234,44 @@ public class CombinationLock : MonoBehaviour
                 1);
         }
 
-        // ITEM REWARD
+        // GIVE ITEM
         if (givesItem && InventoryManager.Instance != null)
         {
             InventoryManager.Instance.AddItem(rewardIcon, rewardItemName, rewardDescription);
         }
 
-        // PLAY CLIP ANIMATION
+        // PLAY ANIMATION
         if (playsUnlockAnimation && unlockAnimationComponent != null &&
             !string.IsNullOrEmpty(unlockAnimationClipName))
         {
             unlockAnimationComponent.Play(unlockAnimationClipName);
         }
 
-        // SET ANIMATOR BOOL
+        // DOOR ANIMATION
         if (doorAnimator != null && !string.IsNullOrEmpty(doorBoolParameter))
         {
             doorAnimator.SetBool(doorBoolParameter, true);
-            Debug.Log("Door Animator bool set TRUE.");
         }
+
+        // PLAY UNLOCK SFX
+        if (audioSource != null && unlockSFX != null)
+            audioSource.PlayOneShot(unlockSFX);
+
+        // PLAY DOOR OPEN SFX (OPTIONAL)
+        if (audioSource != null && doorOpenSFX != null)
+            audioSource.PlayOneShot(doorOpenSFX);
+    }
+
+    void PlayWheelClickSFX()
+    {
+        if (audioSource == null || wheelClickSFX == null) return;
+
+        if (randomizePitch)
+            audioSource.pitch = Random.Range(0.9f, 1.1f);
+        else
+            audioSource.pitch = 1f;
+
+        audioSource.PlayOneShot(wheelClickSFX);
     }
 
     private void OnTriggerEnter(Collider other)
