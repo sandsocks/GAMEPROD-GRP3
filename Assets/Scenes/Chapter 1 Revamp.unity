@@ -912,7 +912,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: -59.341, y: -415.375, z: -15.804}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.29624963, y: 3.776}
+  m_AnchoredPosition: {x: 0.22, y: 3.796}
   m_SizeDelta: {x: 1557, y: 876}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &55585033
@@ -50078,7 +50078,7 @@ MonoBehaviour:
   notePanel: {fileID: 0}
   noteTextUI: {fileID: 0}
   promptMessage: Press E to interact
-  missingItemMessage: You need a specific item!
+  missingItemMessage: You Need a Key
   interactKey: 101
   requireKeyPress: 1
   promptFadeInDuration: 0.5
