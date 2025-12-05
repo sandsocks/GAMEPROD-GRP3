@@ -3,8 +3,6 @@ using UnityEngine.SceneManagement;
 
 public class BubblePortal : MonoBehaviour
 {
-    public string sceneToLoad;
-
     [Header("Audio")]
     public AudioSource audioSource;
     public AudioClip portalSFX;
@@ -21,19 +19,16 @@ public class BubblePortal : MonoBehaviour
 
         triggered = true;
 
-
-        TintManager.Instance.savedTint = tintColor;
-        TintManager.Instance.tintApplied = true;
-
-
+        
         if (audioSource && portalSFX)
             audioSource.PlayOneShot(portalSFX);
+
 
         Invoke(nameof(LoadScene), 0.2f);
     }
 
     private void LoadScene()
     {
-        SceneManager.LoadScene(sceneToLoad);
+        SceneManager.LoadScene(3);
     }
 }

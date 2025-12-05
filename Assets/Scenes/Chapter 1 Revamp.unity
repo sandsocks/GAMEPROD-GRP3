@@ -7786,7 +7786,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -99.34, y: 3.8}
+  m_AnchoredPosition: {x: -107.5, y: 3.8}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &470454150
@@ -15613,7 +15613,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 24e4f891146b96144b65cbd3129a6f02, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.77
+      value: -3.14
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 24e4f891146b96144b65cbd3129a6f02, type: 3}
       propertyPath: m_LocalPosition.z
@@ -15688,7 +15688,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42e3f1b0d65ad734bb22ae8194acea9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BubblePortal
-  sceneToLoad: EndCutscene
   audioSource: {fileID: 0}
   portalSFX: {fileID: 8300000, guid: 40b45bf3a71d8ed468676fa25fbea024, type: 3}
   tintColor: {r: 1, g: 0.10015053, b: 0, a: 1}
@@ -21666,14 +21665,14 @@ RectTransform:
   m_GameObject: {fileID: 1274620232}
   m_LocalRotation: {x: -0, y: 0.00867346, z: -0, w: 0.9999624}
   m_LocalPosition: {x: 0, y: 0, z: -39}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.1165638, y: 2.1165638, z: 2.1165638}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 470454149}
   m_LocalEulerAnglesHint: {x: 0, y: 0.994, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4607, y: 247}
+  m_AnchoredPosition: {x: 8264, y: 2648}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1274620234
@@ -24578,7 +24577,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   revealer: {fileID: 792792416}
-  textToShow: The neighors always seemed to throw their trash in this corner, feels
+  textToShow: The neighbors always seemed to throw their trash in this corner, feels
     like nothing's changed...
 --- !u!65 &1526098047
 BoxCollider:
