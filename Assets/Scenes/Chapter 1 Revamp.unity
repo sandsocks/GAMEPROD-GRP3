@@ -15609,15 +15609,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 24e4f891146b96144b65cbd3129a6f02, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.6147714
+      value: -7.49
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 24e4f891146b96144b65cbd3129a6f02, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.064
+      value: 1.77
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 24e4f891146b96144b65cbd3129a6f02, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.0200001
+      value: 1.49
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 24e4f891146b96144b65cbd3129a6f02, type: 3}
       propertyPath: m_LocalRotation.w
@@ -15688,7 +15688,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42e3f1b0d65ad734bb22ae8194acea9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BubblePortal
-  sceneToLoad: Episode 1 (MEMORY)
+  sceneToLoad: EndCutscene
   audioSource: {fileID: 0}
   portalSFX: {fileID: 8300000, guid: 40b45bf3a71d8ed468676fa25fbea024, type: 3}
   tintColor: {r: 1, g: 0.10015053, b: 0, a: 1}
