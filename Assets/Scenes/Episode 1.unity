@@ -3264,7 +3264,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &245007365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8709,7 +8709,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42e3f1b0d65ad734bb22ae8194acea9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BubblePortal
-  sceneToLoad: Episode 1 (MEMORY)
   audioSource: {fileID: 0}
   portalSFX: {fileID: 0}
   tintColor: {r: 1, g: 0.10015053, b: 0, a: 1}
@@ -11174,7 +11173,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &961881718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12594,6 +12593,11 @@ MonoBehaviour:
   questObjectiveQuestId: shed_riddle
   questObjectiveId: Combination lock
   openDoor: 0
+  audioSource: {fileID: 0}
+  wheelClickSFX: {fileID: 0}
+  unlockSFX: {fileID: 0}
+  doorOpenSFX: {fileID: 0}
+  randomizePitch: 1
 --- !u!64 &1018064103
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -17419,7 +17423,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1388038828
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23003,7 +23007,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1846570660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24376,7 +24380,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1948711189
 MonoBehaviour:
   m_ObjectHideFlags: 0

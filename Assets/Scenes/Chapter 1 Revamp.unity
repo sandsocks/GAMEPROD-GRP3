@@ -21205,7 +21205,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1199518704}
   - component: {fileID: 1199518703}
-  - component: {fileID: 1199518702}
   m_Layer: 0
   m_Name: Quest Manager
   m_TagString: Untagged
@@ -21213,33 +21212,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1199518702
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1199518701}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: def09e9da26967b45bd846be35030b9a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::squigglytext
-  mode: 1
-  selectedTexts:
-  - {fileID: 505798187}
-  - {fileID: 1735570660}
-  - {fileID: 1881899715}
-  - {fileID: 789704108}
-  - {fileID: 305170869}
-  - {fileID: 1281423900}
-  - {fileID: 411848854}
-  - {fileID: 472050010}
-  - {fileID: 688997154}
-  frames: 4
-  frameRate: 8
-  jitter: 0.5
-  autoRefresh: 1
 --- !u!114 &1199518703
 MonoBehaviour:
   m_ObjectHideFlags: 0

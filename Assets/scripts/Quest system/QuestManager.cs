@@ -21,7 +21,7 @@ public class QuestManager : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
@@ -29,7 +29,7 @@ public class QuestManager : MonoBehaviour
         UpdateQuestUI();
     }
 
-    // 🟢 Start quest
+
     public void StartQuest(string questId)
     {
         Quest quest = GetQuestById(questId);
@@ -50,7 +50,7 @@ public class QuestManager : MonoBehaviour
         UpdateQuestUI();
     }
 
-    // 🟠 Add progress to an objective
+    
     public void AddObjectiveProgress(string questId, string objectiveId, int amount = 1)
     {
         Quest quest = GetQuestById(questId);
@@ -78,7 +78,7 @@ public class QuestManager : MonoBehaviour
         UpdateQuestUI();
     }
 
-    // 🟡 Complete a quest (only called internally when all objectives are done)
+    
     public void CompleteQuest(string questId)
     {
         Quest quest = GetQuestById(questId);
@@ -89,7 +89,7 @@ public class QuestManager : MonoBehaviour
 
         Debug.Log($"Quest completed: {quest.questName}");
 
-        // Start next quest(s)
+        
         foreach (var nextId in quest.nextQuestIds)
         {
             Quest next = GetQuestById(nextId);
@@ -102,13 +102,13 @@ public class QuestManager : MonoBehaviour
         UpdateQuestUI();
     }
 
-    // 🔍 Get quest by ID
+    
     public Quest GetQuestById(string questId)
     {
         return allQuests.Find(q => q.questId == questId);
     }
 
-    // 🧾 Update UI text
+    
     private void UpdateQuestUI()
     {
         if (activeQuestsText == null) return;

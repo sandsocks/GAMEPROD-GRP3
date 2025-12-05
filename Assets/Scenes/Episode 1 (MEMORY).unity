@@ -4265,7 +4265,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &344284750
 Transform:
   m_ObjectHideFlags: 0
@@ -5293,7 +5293,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &498397299
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10298,7 +10298,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &961881718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11150,6 +11150,11 @@ MonoBehaviour:
   questObjectiveQuestId: shed_riddle
   questObjectiveId: Combination lock
   openDoor: 0
+  audioSource: {fileID: 0}
+  wheelClickSFX: {fileID: 0}
+  unlockSFX: {fileID: 0}
+  doorOpenSFX: {fileID: 0}
+  randomizePitch: 1
 --- !u!64 &1018064103
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -15161,7 +15166,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1388038828
 RectTransform:
   m_ObjectHideFlags: 0
