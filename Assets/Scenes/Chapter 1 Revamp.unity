@@ -26420,7 +26420,7 @@ MonoBehaviour:
   promptFadeOutDuration: 0.5
   dialogueData: {fileID: 0}
   dialogueRepeatable: 0
-  removeAfterInteraction: 0
+  removeAfterInteraction: 1
   removeDelay: 0.3
   requiredItem: 
   givesItem: 1
