@@ -7,7 +7,7 @@ public class PauseManager : MonoBehaviour
     public GameObject pauseMenuUI;
 
     [Header("References")]
-    public MonoBehaviour cameraController;   // ← drag your camera script here
+    public MonoBehaviour cameraController;
 
     public bool IsPaused { get; private set; } = false;
 
@@ -28,7 +28,6 @@ public class PauseManager : MonoBehaviour
         Time.timeScale = 0f;
         IsPaused = true;
 
-        // Disable camera movement
         if (cameraController != null)
             cameraController.enabled = false;
 
@@ -42,7 +41,6 @@ public class PauseManager : MonoBehaviour
         Time.timeScale = 1f;
         IsPaused = false;
 
-        // Re-enable camera movement
         if (cameraController != null)
             cameraController.enabled = true;
 
@@ -60,5 +58,12 @@ public class PauseManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         Application.Quit();
+    }
+
+
+    public void BackToMainMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Main Menu");
     }
 }
