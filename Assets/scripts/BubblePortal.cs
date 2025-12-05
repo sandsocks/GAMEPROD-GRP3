@@ -21,11 +21,11 @@ public class BubblePortal : MonoBehaviour
 
         triggered = true;
 
-        // Save tint to persistent manager
+
         TintManager.Instance.savedTint = tintColor;
         TintManager.Instance.tintApplied = true;
 
-        // Play SFX
+
         if (audioSource && portalSFX)
             audioSource.PlayOneShot(portalSFX);
 
