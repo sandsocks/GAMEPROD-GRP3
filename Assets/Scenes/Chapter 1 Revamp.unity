@@ -6167,9 +6167,9 @@ MonoBehaviour:
   triggerAnimation: 1
   animator: {fileID: 355908672}
   animationTriggerName: TreeFell
-  playSFX: 0
+  playSFX: 1
   audioSource: {fileID: 0}
-  interactionSFX: {fileID: 0}
+  interactionSFX: {fileID: 8300000, guid: 09b5e3e233b24734dbc9fef754da7e88, type: 3}
   triggerQuestOnInteraction: 0
   triggerQuestOnEnter: 0
   questToStart: 
