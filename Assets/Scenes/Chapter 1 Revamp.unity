@@ -6737,6 +6737,11 @@ MonoBehaviour:
   questObjectiveQuestId: shed_riddle
   questObjectiveId: Combination lock
   openDoor: 0
+  audioSource: {fileID: 0}
+  wheelClickSFX: {fileID: 8300000, guid: c89057dc0ec00e344a1f79c15aff97cc, type: 3}
+  unlockSFX: {fileID: 8300000, guid: f0e6d3abf7f84f2419166292c78814cf, type: 3}
+  doorOpenSFX: {fileID: 8300000, guid: 05147365700dc8a4d91151935143e50a, type: 3}
+  randomizePitch: 1
 --- !u!1 &411848852
 GameObject:
   m_ObjectHideFlags: 0
