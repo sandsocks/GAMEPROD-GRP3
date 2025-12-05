@@ -31174,9 +31174,9 @@ MonoBehaviour:
   triggerAnimation: 1
   animator: {fileID: 1020595627}
   animationTriggerName: Cactus
-  playSFX: 0
+  playSFX: 1
   audioSource: {fileID: 0}
-  interactionSFX: {fileID: 0}
+  interactionSFX: {fileID: 8300000, guid: c89057dc0ec00e344a1f79c15aff97cc, type: 3}
   triggerQuestOnInteraction: 0
   triggerQuestOnEnter: 0
   questToStart: 
