@@ -3,9 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public GameObject pausePanel; // your pause menu UI panel
+    public GameObject pausePanel;
 
-    // Call this to open the pause menu
+
     public void OpenPauseMenu()
     {
         pausePanel.SetActive(true);
