@@ -3231,15 +3231,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: -8.03, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-<<<<<<< HEAD
-<<<<<<< HEAD
-  m_AnchoredPosition: {x: -95.087, y: 3.381}
-=======
-  m_AnchoredPosition: {x: -90.02, y: 3.381}
->>>>>>> 06588ebf5c47a48110389bc9204261167f7b8834
-=======
   m_AnchoredPosition: {x: -85.93, y: 3.381}
->>>>>>> parent of 06588eb (Bug Fixes)
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &248911756
@@ -6029,15 +6021,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5503057903223923617, guid: 86e29605cb887d4489df79b439c5d9a4, type: 3}
       propertyPath: m_LocalPosition.x
-<<<<<<< HEAD
-<<<<<<< HEAD
-      value: -22.8
-=======
-      value: -18.088
->>>>>>> 06588ebf5c47a48110389bc9204261167f7b8834
-=======
       value: -13.913
->>>>>>> parent of 06588eb (Bug Fixes)
       objectReference: {fileID: 0}
     - target: {fileID: 5503057903223923617, guid: 86e29605cb887d4489df79b439c5d9a4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -12100,15 +12084,7 @@ Transform:
   m_GameObject: {fileID: 772857029}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.9999494, z: -0, w: 0.010062134}
-<<<<<<< HEAD
-<<<<<<< HEAD
-  m_LocalPosition: {x: -94.329, y: 0.87, z: 2.16}
-=======
-  m_LocalPosition: {x: -89.31, y: 0.87, z: 2.16}
->>>>>>> 06588ebf5c47a48110389bc9204261167f7b8834
-=======
   m_LocalPosition: {x: -85.77, y: 0.87, z: 2.16}
->>>>>>> parent of 06588eb (Bug Fixes)
   m_LocalScale: {x: 3.0655699, y: 2.5085459, z: 2.508122}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15233,15 +15209,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 24e4f891146b96144b65cbd3129a6f02, type: 3}
       propertyPath: m_LocalScale.x
-      value: 109.298096
+      value: 87
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 24e4f891146b96144b65cbd3129a6f02, type: 3}
       propertyPath: m_LocalScale.y
-      value: 109.298096
+      value: 87
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 24e4f891146b96144b65cbd3129a6f02, type: 3}
       propertyPath: m_LocalScale.z
-      value: 109.298096
+      value: 87
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 24e4f891146b96144b65cbd3129a6f02, type: 3}
       propertyPath: m_LocalPosition.x
@@ -23345,15 +23321,7 @@ Transform:
   m_GameObject: {fileID: 1474522421}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7123546, z: -0, w: 0.7018197}
-<<<<<<< HEAD
-<<<<<<< HEAD
-  m_LocalPosition: {x: -22.854998, y: 1.7880002, z: 43.661}
-=======
-  m_LocalPosition: {x: -17.93, y: 1.481, z: 43.661}
->>>>>>> 06588ebf5c47a48110389bc9204261167f7b8834
-=======
   m_LocalPosition: {x: -13.9679985, y: 1.7880002, z: 43.661}
->>>>>>> parent of 06588eb (Bug Fixes)
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -28385,15 +28353,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4185640168406823350, guid: 61317dfbd869256489b0e047e8144c68, type: 3}
       propertyPath: m_LocalPosition.x
-<<<<<<< HEAD
-<<<<<<< HEAD
-      value: 30.433
-=======
-      value: 35.19
->>>>>>> 06588ebf5c47a48110389bc9204261167f7b8834
-=======
       value: 39.32
->>>>>>> parent of 06588eb (Bug Fixes)
       objectReference: {fileID: 0}
     - target: {fileID: -4185640168406823350, guid: 61317dfbd869256489b0e047e8144c68, type: 3}
       propertyPath: m_LocalPosition.y
@@ -28755,22 +28715,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8252973762702209320, guid: 4794bdb2a0e130b4bb1d8a2b0fb8fe3f, type: 3}
       propertyPath: m_LocalPosition.x
-<<<<<<< HEAD
-<<<<<<< HEAD
-      value: -7.875
-      objectReference: {fileID: 0}
-    - target: {fileID: 8252973762702209320, guid: 4794bdb2a0e130b4bb1d8a2b0fb8fe3f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.178
-      objectReference: {fileID: 0}
-    - target: {fileID: 8252973762702209320, guid: 4794bdb2a0e130b4bb1d8a2b0fb8fe3f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 62.126
-=======
-      value: -7.9
-=======
       value: 1.8851995
->>>>>>> parent of 06588eb (Bug Fixes)
       objectReference: {fileID: 0}
     - target: {fileID: 8252973762702209320, guid: 4794bdb2a0e130b4bb1d8a2b0fb8fe3f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -28778,12 +28723,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8252973762702209320, guid: 4794bdb2a0e130b4bb1d8a2b0fb8fe3f, type: 3}
       propertyPath: m_LocalPosition.z
-<<<<<<< HEAD
-      value: 62.166
->>>>>>> 06588ebf5c47a48110389bc9204261167f7b8834
-=======
       value: -3.4195976
->>>>>>> parent of 06588eb (Bug Fixes)
       objectReference: {fileID: 0}
     - target: {fileID: 8252973762702209320, guid: 4794bdb2a0e130b4bb1d8a2b0fb8fe3f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -49490,7 +49430,7 @@ MonoBehaviour:
   notePanel: {fileID: 0}
   noteTextUI: {fileID: 0}
   promptMessage: Press E to interact
-  missingItemMessage: You need a Key
+  missingItemMessage: You need a specific item!
   interactKey: 101
   requireKeyPress: 1
   promptFadeInDuration: 0.5
