@@ -12,11 +12,11 @@ public class QuestTrigger : MonoBehaviour
         {
             triggered = true;
 
-            
+            // Show both panels
             questPanel.SetActive(true);
             inventoryPanel.SetActive(true);
 
-            
+            // Disable the trigger so it never runs again
             gameObject.SetActive(false);
         }
     }

@@ -7,7 +7,7 @@ public class WorldTextRevealer : MonoBehaviour
     public TextMeshProUGUI textTMP;
     public float letterFadeDuration = 0.07f;
     public float delayBetweenLetters = 0.02f;
-    public float visibleDuration = 5f;
+    public float visibleDuration = 5f;   // stays on screen
     public float fadeOutDuration = 5f;
 
     CanvasGroup cg;
@@ -16,7 +16,7 @@ public class WorldTextRevealer : MonoBehaviour
     {
         cg = GetComponentInParent<CanvasGroup>();
         if (cg != null)
-            cg.alpha = 0;
+            cg.alpha = 0;  // invisible initially
     }
 
     public void StartReveal(string sentence)
@@ -27,7 +27,7 @@ public class WorldTextRevealer : MonoBehaviour
 
     IEnumerator RevealSequence(string sentence)
     {
-        if (cg != null) cg.alpha = 1f;
+        if (cg != null) cg.alpha = 1f; // show canvas
 
         yield return StartCoroutine(RevealLetters(sentence));
         yield return new WaitForSeconds(visibleDuration);
@@ -41,7 +41,7 @@ public class WorldTextRevealer : MonoBehaviour
 
         TMP_TextInfo textInfo = textTMP.textInfo;
 
- 
+        // Make all letters invisible
         for (int i = 0; i < textInfo.characterCount; i++)
         {
             var c = textInfo.characterInfo[i];
@@ -58,7 +58,7 @@ public class WorldTextRevealer : MonoBehaviour
 
         textTMP.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32);
 
-
+        // Fade in letters sequentially
         for (int i = 0; i < textInfo.characterCount; i++)
         {
             var c = textInfo.characterInfo[i];

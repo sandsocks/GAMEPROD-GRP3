@@ -7,6 +7,6 @@ public class Billboard : MonoBehaviour
         if (Camera.main == null) return;
 
         transform.LookAt(Camera.main.transform);
-        transform.Rotate(0, 180f, 0);
+        transform.Rotate(0, 180f, 0); // flips text to face camera correctly
     }
 }
