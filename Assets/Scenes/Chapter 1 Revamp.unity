@@ -6644,9 +6644,9 @@ MonoBehaviour:
   triggerAnimation: 0
   animator: {fileID: 0}
   animationTriggerName: Activate
-  playSFX: 0
+  playSFX: 1
   audioSource: {fileID: 0}
-  interactionSFX: {fileID: 0}
+  interactionSFX: {fileID: 8300000, guid: c89057dc0ec00e344a1f79c15aff97cc, type: 3}
   triggerQuestOnInteraction: 1
   triggerQuestOnEnter: 0
   questToStart: shed_riddle
@@ -15132,9 +15132,9 @@ MonoBehaviour:
   triggerAnimation: 1
   animator: {fileID: 1836604250}
   animationTriggerName: BathroomDoorOpen
-  playSFX: 0
+  playSFX: 1
   audioSource: {fileID: 0}
-  interactionSFX: {fileID: 0}
+  interactionSFX: {fileID: 8300000, guid: 05147365700dc8a4d91151935143e50a, type: 3}
   triggerQuestOnInteraction: 0
   triggerQuestOnEnter: 0
   questToStart: 
@@ -15685,7 +15685,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BubblePortal
   sceneToLoad: Episode 1 (MEMORY)
   audioSource: {fileID: 0}
-  portalSFX: {fileID: 0}
+  portalSFX: {fileID: 8300000, guid: 40b45bf3a71d8ed468676fa25fbea024, type: 3}
   tintColor: {r: 1, g: 0.10015053, b: 0, a: 1}
 --- !u!64 &1010680994
 MeshCollider:
@@ -16267,9 +16267,9 @@ MonoBehaviour:
   triggerAnimation: 0
   animator: {fileID: 0}
   animationTriggerName: Activate
-  playSFX: 0
+  playSFX: 1
   audioSource: {fileID: 0}
-  interactionSFX: {fileID: 0}
+  interactionSFX: {fileID: 8300000, guid: f301d2712d5ca57458a4e325e8708247, type: 3}
   triggerQuestOnInteraction: 0
   triggerQuestOnEnter: 0
   questToStart: 
@@ -17156,9 +17156,9 @@ MonoBehaviour:
   triggerAnimation: 0
   animator: {fileID: 0}
   animationTriggerName: Activate
-  playSFX: 0
+  playSFX: 1
   audioSource: {fileID: 0}
-  interactionSFX: {fileID: 0}
+  interactionSFX: {fileID: 8300000, guid: 09b5e3e233b24734dbc9fef754da7e88, type: 3}
   triggerQuestOnInteraction: 0
   triggerQuestOnEnter: 0
   questToStart: 
@@ -19809,9 +19809,9 @@ MonoBehaviour:
   triggerAnimation: 0
   animator: {fileID: 0}
   animationTriggerName: Activate
-  playSFX: 0
+  playSFX: 1
   audioSource: {fileID: 0}
-  interactionSFX: {fileID: 0}
+  interactionSFX: {fileID: 8300000, guid: e23017dc752b1384c903dd78feb3c9f4, type: 3}
   triggerQuestOnInteraction: 0
   triggerQuestOnEnter: 0
   questToStart: 
@@ -20011,9 +20011,9 @@ MonoBehaviour:
   triggerAnimation: 0
   animator: {fileID: 0}
   animationTriggerName: Activate
-  playSFX: 0
+  playSFX: 1
   audioSource: {fileID: 0}
-  interactionSFX: {fileID: 0}
+  interactionSFX: {fileID: 8300000, guid: f301d2712d5ca57458a4e325e8708247, type: 3}
   triggerQuestOnInteraction: 0
   triggerQuestOnEnter: 0
   questToStart: 
@@ -21579,9 +21579,9 @@ MonoBehaviour:
   triggerAnimation: 0
   animator: {fileID: 0}
   animationTriggerName: Activate
-  playSFX: 0
+  playSFX: 1
   audioSource: {fileID: 0}
-  interactionSFX: {fileID: 0}
+  interactionSFX: {fileID: 8300000, guid: e23017dc752b1384c903dd78feb3c9f4, type: 3}
   triggerQuestOnInteraction: 0
   triggerQuestOnEnter: 0
   questToStart: 
@@ -25876,7 +25876,7 @@ MonoBehaviour:
   animationTriggerName: PhotoInteract
   playSFX: 0
   audioSource: {fileID: 0}
-  interactionSFX: {fileID: 0}
+  interactionSFX: {fileID: 8300000, guid: 09b5e3e233b24734dbc9fef754da7e88, type: 3}
   triggerQuestOnInteraction: 0
   triggerQuestOnEnter: 0
   questToStart: 
@@ -26429,9 +26429,9 @@ MonoBehaviour:
   triggerAnimation: 0
   animator: {fileID: 0}
   animationTriggerName: Activate
-  playSFX: 0
+  playSFX: 1
   audioSource: {fileID: 0}
-  interactionSFX: {fileID: 0}
+  interactionSFX: {fileID: 8300000, guid: a30accfe671fe3c4cb25911495a2a2aa, type: 3}
   triggerQuestOnInteraction: 0
   triggerQuestOnEnter: 0
   questToStart: 
@@ -50099,9 +50099,9 @@ MonoBehaviour:
   triggerAnimation: 1
   animator: {fileID: 8380545804860402070}
   animationTriggerName: DoorRightOpen
-  playSFX: 0
+  playSFX: 1
   audioSource: {fileID: 0}
-  interactionSFX: {fileID: 0}
+  interactionSFX: {fileID: 8300000, guid: 05147365700dc8a4d91151935143e50a, type: 3}
   triggerQuestOnInteraction: 0
   triggerQuestOnEnter: 0
   questToStart: 
@@ -52009,9 +52009,9 @@ MonoBehaviour:
   triggerAnimation: 1
   animator: {fileID: 9095574837868625128}
   animationTriggerName: FrontGateOpen
-  playSFX: 0
+  playSFX: 1
   audioSource: {fileID: 0}
-  interactionSFX: {fileID: 0}
+  interactionSFX: {fileID: 8300000, guid: 05147365700dc8a4d91151935143e50a, type: 3}
   triggerQuestOnInteraction: 0
   triggerQuestOnEnter: 0
   questToStart: 
