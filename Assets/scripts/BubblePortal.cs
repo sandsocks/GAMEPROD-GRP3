@@ -29,6 +29,6 @@ public class BubblePortal : MonoBehaviour
 
     private void LoadScene()
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(4);
     }
 }

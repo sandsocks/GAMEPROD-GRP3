@@ -5,11 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-     public void PlayGame()
+    public void PlayGame()
     {
-        SceneManager.LoadSceneAsync(2);
-    }
+    
+        PlayerPrefs.SetString("NextScene", "Chapter 1 Revamp");
 
+    
+        SceneManager.LoadScene("LoadingScreen");
+    }
     public void QuitGame()
     {
         Application.Quit();

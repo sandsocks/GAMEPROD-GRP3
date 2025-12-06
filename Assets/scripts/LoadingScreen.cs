@@ -1,66 +1,56 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 using System.Collections;
 
 public class LoadingScreen : MonoBehaviour
 {
-    public static LoadingScreen Instance;
-    public CanvasGroup canvasGroup;
-    public float fadeDuration = 0.5f;
+    [Header("UI")]
+    public Slider progressBar;
+    public TextMeshProUGUI loadingText;
 
-    void Awake()
+    [Header("Timing")]
+    public float fakeLoadDuration = 2.5f; // Seconds minimum loading screen time
+
+    void Start()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        StartCoroutine(LoadAsyncOperation());
     }
 
-    public void LoadScene(string sceneName)
+    IEnumerator LoadAsyncOperation()
     {
-        StartCoroutine(LoadSceneRoutine(sceneName));
-    }
+        string sceneToLoad = PlayerPrefs.GetString("NextScene");
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneToLoad);
+        operation.allowSceneActivation = false;
 
-    IEnumerator LoadSceneRoutine(string sceneName)
-    {
-        // Fade in
-        yield return StartCoroutine(Fade(1));
+        float timer = 0f;
 
-        // Load scene async
-        AsyncOperation op = SceneManager.LoadSceneAsync(sceneName);
-        op.allowSceneActivation = false;
-
-        // Wait until almost done
-        while (op.progress < 0.9f)
-            yield return null;
-
-        // Finish loading
-        op.allowSceneActivation = true;
-
-        // Wait one frame after scene loads
-        yield return null;
-
-        // Fade out
-        yield return StartCoroutine(Fade(0));
-    }
-
-    IEnumerator Fade(float target)
-    {
-        float start = canvasGroup.alpha;
-        float t = 0;
-
-        while (t < fadeDuration)
+        while (!operation.isDone)
         {
-            t += Time.deltaTime;
-            canvasGroup.alpha = Mathf.Lerp(start, target, t / fadeDuration);
+            timer += Time.deltaTime;
+
+            // Smooth fake loading curve
+            float fakeProgress = Mathf.Clamp01(timer / fakeLoadDuration);
+
+            // Real loading progress
+            float realProgress = Mathf.Clamp01(operation.progress / 0.9f);
+
+            // Combine real + fake progress
+            float displayProgress = Mathf.Min(fakeProgress, realProgress);
+
+            progressBar.value = displayProgress;
+            loadingText.text = "Loading... " + (displayProgress * 100f).ToString("F0") + "%";
+
+            // Both real load & fake timer must be done
+            if (displayProgress >= 1f)
+            {
+                loadingText.text = "Starting...";
+                yield return new WaitForSeconds(0.5f);
+                operation.allowSceneActivation = true;
+            }
+
             yield return null;
         }
-
-        canvasGroup.alpha = target;
     }
 }
